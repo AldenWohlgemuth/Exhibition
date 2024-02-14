@@ -1,0 +1,19 @@
+<html>
+    <header>
+        What's 2+3?
+    </header>
+    <body>
+        <input type="number" id="math">
+        <input type="button" value="click" onclick="checkAnswer()"><span id="verify"></span>
+        <script>
+            function checkAnswer() {
+                var answer = document.getElementById("math");
+                if(answer.value == 5){
+                    document.getElementById('verify').innerHTML = 'Correct';
+                } else {
+                    document.getElementById('verify').innerHTML = 'Incorrect';
+                }
+            }
+        </script>
+    </body>
+</html>
