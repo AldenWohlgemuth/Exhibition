@@ -1,16 +1,24 @@
+<!DOCTYPE = html>
 <html>
+    <!--Webpage header goes here-->
     <header>
         What's 2+3?
     </header>
+    <!--Main page information goes here-->
     <body>
+        <!--Creates an input called math that only accepts numbers-->
         <input type="number" id="math">
+        <!--Creates button that calls checkAnswer when cliked-->
         <input type="button" value="click" onclick="checkAnswer()"><span id="verify"></span>
+        <!--Runs javascript function that checks if answer is correct-->
         <script>
             function checkAnswer() {
                 var answer = document.getElementById("math");
                 if(answer.value == 5){
+                    //Prints corect if input is 5
                     document.getElementById('verify').innerHTML = 'Correct';
                 } else {
+                    //Prints incorrect if input is not 5
                     document.getElementById('verify').innerHTML = 'Incorrect';
                 }
             }
