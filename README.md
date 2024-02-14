@@ -1,1 +1,1 @@
-# Exhibition
+This is a website I am designing for my exhibition project. I'm planning for it to be a website you can use to quiz yourself on various subjects.
