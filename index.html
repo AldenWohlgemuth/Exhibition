@@ -2,25 +2,44 @@
 <html>
     <!--Webpage header goes here-->
     <header>
-        What's 2+3?
+        This is a basic logic test, so I can figure out how to check multiple answers
     </header>
     <!--Main page information goes here-->
     <body>
-        <!--Creates an input called math that only accepts numbers-->
-        <input type="number" id="math">
+        <!--Adds a label that displays a question-->
+        <label>What's 2+3?</label>
+        <!--Creates an input called math1 that only accepts numbers-->
+        <input type="number" id="math1">
+        <!--Adds a label that displays a question-->
+        <label>What's 5+3?</label>
+        <!--Creates an input called math2 that only accepts numbers-->
+        <input type="number" id="math2">
+        <!--Adds a label that displays a question-->
+        <label>What's 5+7?</label>
+        <!--Creates an input called math3 that only accepts numbers-->
+        <input type="number" id="math3">
         <!--Creates button that calls checkAnswer when cliked-->
         <input type="button" value="click" onclick="checkAnswer()"><span id="verify"></span>
         <!--Runs javascript function that checks if answer is correct-->
         <script>
             function checkAnswer() {
-                var answer = document.getElementById("math");
-                if(answer.value == 5){
-                    //Prints corect if input is 5
-                    document.getElementById('verify').innerHTML = 'Correct';
-                } else {
-                    //Prints incorrect if input is not 5
-                    document.getElementById('verify').innerHTML = 'Incorrect';
+                //Gets the user inputs for math1, math2, and math3
+                var answer1 = document.getElementById("math1")
+                var answer2 = document.getElementById("math2")
+                var answer3 = document.getElementById("math3")
+                var correct = 0
+                //Checks if inputs are correct
+                if(answer1.value == 5){
+                    correct ++
                 }
+                if(answer2.value == 8){
+                    correct ++
+                }
+                if(answer3.value == 12){
+                    correct ++
+                }
+                //Displays number of correct answers
+                document.getElementById('verify').innerHTML = `You got ${correct} questions correct.`
             }
         </script>
     </body>
