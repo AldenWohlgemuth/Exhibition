@@ -26,6 +26,7 @@ h1 {
     font-family: sans-serif;
     text-align: left;
     display: block;
+    position: relative;
 }
 .button {
     background-color: whitesmoke;

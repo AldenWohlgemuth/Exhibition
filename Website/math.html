@@ -17,21 +17,36 @@
     <!--Main page information goes here-->
     <body>
         <!--Adds a label that displays a question-->
-        <label class = "question">What's 2+3?</label>
+        <label class = "question" id = "ask1"></label>
         <!--Creates an input called math1 that only accepts numbers-->
         <input type = "number" id="math1" class = "answer">
         <!--Adds a label that displays a question-->
-        <label class = "question">What's 5+3?</label>
+        <label class = "question" id = "ask2"></label>
         <!--Creates an input called math2 that only accepts numbers-->
         <input type = "number" id = "math2" class = "answer">
-        <!--Adds a label that displays a question-->
-        <label class = "question">What's 5+7?</label>
+        <!--Adds a label that displays a question with randomly-generated numbers between 1 and 10-->
+        <label class = "question" id = "ask3"></label>
         <!--Creates an input called math3 that only accepts numbers-->
         <input type = "number" id = "math3" class = "answer">
         <!--Creates button that calls checkAnswer when clicked-->
-        <input type = "button" value = "click" onclick = "checkAnswer()" class = "button"><span id = "verify"></span>
+        <input type = "button" value = "Check Answer" onclick = "checkAnswer()" class = "button"><span id = "verify"></span>
         <!--Runs javascript function that checks if answer is correct-->
         <script>
+            let a = Math.floor(Math.random()*10)
+            let b = Math.floor(Math.random()*10)
+            let c = Math.floor(Math.random()*10)
+            let d = Math.floor(Math.random()*10)
+            let e = Math.floor(Math.random()*10)
+            let f = Math.floor(Math.random()*10)
+            document.getElementById('ask1').innerHTML = `What is ${a}+${b}?`
+            document.getElementById('ask1').style.color = "white"
+            document.getElementById('ask1').style.fontFamily = "sans-serif"
+            document.getElementById('ask2').innerHTML = `What is ${c}+${d}?`
+            document.getElementById('ask2').style.color = "white"
+            document.getElementById('ask2').style.fontFamily = "sans-serif"
+            document.getElementById('ask3').innerHTML = `What is ${e}+${f}?`
+            document.getElementById('ask3').style.color = "white"
+            document.getElementById('ask3').style.fontFamily = "sans-serif"
             function checkAnswer() {
                 //Gets the user inputs for math1, math2, and math3
                 var answer1 = document.getElementById("math1")
@@ -39,13 +54,13 @@
                 var answer3 = document.getElementById("math3")
                 var correct = 0
                 //Checks if inputs are correct
-                if(answer1.value == 5){
+                if(answer1.value == a + b){
                     correct ++
                 }
-                if(answer2.value == 8){
+                if(answer2.value == c + d){
                     correct ++
                 }
-                if(answer3.value == 12){
+                if(answer3.value == e + f){
                     correct ++
                 }
                 //Displays number of correct answers
