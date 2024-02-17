@@ -1,0 +1,35 @@
+body {
+    background-color: black;
+}
+.navigation {
+    font-family: sans-serif;
+    text-align: center;
+}
+p {
+    color: whitesmoke;
+    font-family: sans-serif;
+    text-align: center;
+}
+h1 {
+    color: whitesmoke;
+    font-family: sans-serif;
+    text-align: center;
+}
+.question {
+    color: whitesmoke;
+    font-family: sans-serif;
+    text-align: left;
+    display: block;
+}
+.answer {
+    color: black;
+    font-family: sans-serif;
+    text-align: left;
+    display: block;
+}
+.button {
+    background-color: whitesmoke;
+    color: black;
+    font-family: sans-serif;
+    text-align: center;
+}

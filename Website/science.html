@@ -8,7 +8,7 @@
         <h1>Science Study Page</h1>
     </head>
     <header>
-        <nav>
+        <nav class = "navigation">
             <a href = "./index.html">Home</a>
             <a href = "./math.html">Math Studying</a>
             <a href = "./spanish.html">Spanish Studying</a>
@@ -17,11 +17,11 @@
     <!--Main page information goes here-->
     <body>
         <!--Adds a label that displays a question-->
-        <label>What is the change in allele frequence in a population called?</label>
+        <label class = "question">What is the change in allele frequence in a population called?</label>
         <!--Creates an input called science1-->
-        <input id="science1">
+        <input id = "science1" class = "answer">
         <!--Creates button that calls checkAnswer when clicked-->
-        <input type="button" value="click" onclick="checkAnswer()"><span id="verify"></span>
+        <input type = "button" value = "click" onclick = "checkAnswer()"><span id = "verify"></span>
         <!--Runs javascript function that checks if answer is correct-->
         <script>
             function checkAnswer() {

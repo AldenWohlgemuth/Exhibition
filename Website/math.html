@@ -8,7 +8,7 @@
         <h1>Math Study Page</h1>
     </head>
     <header>
-        <nav>
+        <nav class = "navigation">
             <a href = "./index.html">Home</a>
             <a href = "./science.html">Science Studying</a>
             <a href = "./spanish.html">Spanish Studying</a>
@@ -17,19 +17,19 @@
     <!--Main page information goes here-->
     <body>
         <!--Adds a label that displays a question-->
-        <label>What's 2+3?</label>
+        <label class = "question">What's 2+3?</label>
         <!--Creates an input called math1 that only accepts numbers-->
-        <input type="number" id="math1">
+        <input type = "number" id="math1" class = "answer">
         <!--Adds a label that displays a question-->
-        <label>What's 5+3?</label>
+        <label class = "question">What's 5+3?</label>
         <!--Creates an input called math2 that only accepts numbers-->
-        <input type="number" id="math2">
+        <input type = "number" id = "math2" class = "answer">
         <!--Adds a label that displays a question-->
-        <label>What's 5+7?</label>
+        <label class = "question">What's 5+7?</label>
         <!--Creates an input called math3 that only accepts numbers-->
-        <input type="number" id="math3">
+        <input type = "number" id = "math3" class = "answer">
         <!--Creates button that calls checkAnswer when clicked-->
-        <input type="button" value="click" onclick="checkAnswer()"><span id="verify"></span>
+        <input type = "button" value = "click" onclick = "checkAnswer()" class = "button"><span id = "verify"></span>
         <!--Runs javascript function that checks if answer is correct-->
         <script>
             function checkAnswer() {
