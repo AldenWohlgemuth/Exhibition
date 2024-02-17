@@ -16,14 +16,17 @@
     </header>
     <!--Main page information goes here-->
     <body>
-        <!--Adds a label that displays a question-->
-        <label class = "question" id = "ask"></label>
-        <!--Creates an input called math that only accepts numbers-->
-        <input type = "number" id="math" class = "answer">
-        <!--Creates button that calls checkAnswer when clicked-->
-        <input type = "button" value = "Check Answer" onclick = "checkAnswer()" class = "button"><span id = "verify"></span>
-        <!--Runs javascript function that checks if answer is correct-->
+        <form id = "math_question">
+            <!--Adds a label that displays a question-->
+            <label class = "question" id = "ask"></label>
+            <!--Creates an input called math that only accepts numbers-->
+            <input type = "number" id="math" class = "answer">
+            <!--Creates button that calls checkAnswer when clicked-->
+            <input type = "button" value = "Check Answer" onclick = "checkAnswer()" class = "button"><span id = "verify"></span>
+            <!--Runs javascript function that checks if answer is correct-->
+        </form>
         <script>
+            //Sets random values for question
             let a = Math.floor(Math.random()*10)
             let b = Math.floor(Math.random()*10)
             document.getElementById('ask').innerHTML = `What is ${a}+${b}?`
@@ -32,21 +35,31 @@
 
             function checkAnswer() {
                 //Gets the user inputs for math1, math2, and math3
-                var answer1 = document.getElementById("math")
+                var answer = document.getElementById("math")
+                let correct = 0
+                let numAsked = 0
+                let percentCorrect = 0
                 //Formats response
                 document.getElementById('verify').style.color = "white"
                 document.getElementById('verify').style.fontFamily = "sans-serif"
                 //Checks if inputs are correct
                 if(answer.value == a + b){
-                    document.getElementById('verify').innerHTML = 'Correct!'
-                    a = Math.floor(Math.random()*10)
-                    b = Math.floor(Math.random()*10)
-                    document.getElementById('ask1').innerHTML = `What is ${a}+${b}?`
+                    //Increases number correct by 1
+                    correct ++
+                    numAsked ++
+                    percentCorrect = Math.floor((correct/numAsked)*100)
+                    //Tells user that answer is correct
+                    document.getElementById('verify').innerHTML = `Correct! Your score is ${percentCorrect}%.`
                 } else {
-                    document.getElementById('verify').innerHTML = 'Incorrect. Try again.'
+                    document.getElementById('verify').innerHTML = `Incorrect. Your score is ${percentCorrect}%.`
+                    numAsked ++
+                    percentCorrect = Math.floor((correct/numAsked)*100)
                 }
-                //Displays number of correct answers
-                document.getElementById('verify').innerHTML = `You got ${correct} questions correct.`
+                //Resets question
+                a = Math.floor(Math.random()*10)
+                b = Math.floor(Math.random()*10)
+                document.getElementById('ask').innerHTML = `What is ${a}+${b}?`
+                document.getElementById('math_question').reset()
             }
         </script>
     </body>
