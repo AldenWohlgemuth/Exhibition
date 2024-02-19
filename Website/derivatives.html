@@ -4,8 +4,8 @@
     <head>
         <!--Allows for formatting-->
         <link href="style.css" rel="stylesheet">
-        <title>Math Study Page</title>
-        <h1>Math Study Page</h1>
+        <title>Math Study Page-Derivatives Practice</title>
+        <h1>Math Study Page-Derivatives Practice</h1>
     </head>
     <header>
         <nav class = "navigation">
@@ -17,23 +17,22 @@
     <!--Main page information goes here-->
     <body>
         <h1>
-            <a href = "./derivatives.html">Derivatives Practice</a>
-            <a href = "./antiderivatives.html">Antiderivatives Practice</a>
+            <a href = "./math.html"></a>
         </h1>
         <form id = "math_question">
             <!--Adds a label that displays a question-->
             <label class = "question" id = "ask"></label>
             <!--Creates an input called math that only accepts numbers-->
-            <input type = "number" id="math" class = "answer">
+            <input id="math" class = "answer">
             <!--Creates button that calls checkAnswer when clicked-->
             <input type = "button" value = "Check Answer" onclick = "checkAnswer()" class = "button"><span id = "verify"></span>
             <!--Runs javascript function that checks if answer is correct-->
         </form>
         <script>
             //Sets random values for question
-            let a = Math.floor(Math.random()*10)
-            let b = Math.floor(Math.random()*10)
-            document.getElementById('ask').innerHTML = `What is ${a}+${b}?`
+            let a = Math.floor((Math.random()*10)+1)
+            let n = Math.floor((Math.random()*10)+1)
+            document.getElementById('ask').innerHTML = `What is the derivative of the function f(x)=${a}x${n}?`
             document.getElementById('ask').style.color = "white"
             document.getElementById('ask').style.fontFamily = "sans-serif"
 
@@ -49,7 +48,7 @@
                 document.getElementById('verify').style.color = "white"
                 document.getElementById('verify').style.fontFamily = "sans-serif"
                 //Checks if inputs are correct
-                if(answer.value == a + b){
+                if(answer.value == (a * n) + 'x' + (n - 1)){
                     //Increases number correct by 1
                     correct ++
                     numAsked ++
@@ -59,12 +58,12 @@
                 } else {
                     numAsked ++
                     percentCorrect = Math.floor((correct/numAsked)*100)
-                    document.getElementById('verify').innerHTML = `Incorrect. Your score is ${percentCorrect}%.`
+                    document.getElementById('verify').innerHTML = `Incorrect. The correct answer is ${(a * n) + 'x' + (n + 1)} Your score is ${percentCorrect}%.`
                 }
                 //Resets question
-                a = Math.floor(Math.random()*10)
-                b = Math.floor(Math.random()*10)
-                document.getElementById('ask').innerHTML = `What is ${a}+${b}?`
+                a = Math.floor((Math.random()*10)+1)
+                n = Math.floor((Math.random()*10)+1)
+                document.getElementById('ask').innerHTML = `What is the derivative of the function f(x)=${a}x${n}?`
                 document.getElementById('math_question').reset()
             }
         </script>
