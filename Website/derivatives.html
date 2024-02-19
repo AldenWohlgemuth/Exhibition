@@ -30,9 +30,11 @@
         </form>
         <script>
             //Sets random values for question
-            let a = Math.floor((Math.random()*10)+1)
-            let n = Math.floor((Math.random()*10)+1)
+            let a = Math.floor((Math.random()*9)+1)
+            let n = Math.floor((Math.random()*9)+1)
+            //Prints question with randomly-generated values
             document.getElementById('ask').innerHTML = `What is the derivative of the function f(x)=${a}x${n}?`
+            //Formats question
             document.getElementById('ask').style.color = "white"
             document.getElementById('ask').style.fontFamily = "sans-serif"
 
@@ -44,25 +46,30 @@
             function checkAnswer() {
                 //Gets the user inputs for math1, math2, and math3
                 var answer = document.getElementById("math")
-                //Formats response
+                //Formatting
                 document.getElementById('verify').style.color = "white"
                 document.getElementById('verify').style.fontFamily = "sans-serif"
                 //Checks if inputs are correct
                 if(answer.value == (a * n) + 'x' + (n - 1)){
                     //Increases number correct by 1
                     correct ++
+                    //Increases total questions asked by 1
                     numAsked ++
+                    //Updates score
                     percentCorrect = Math.floor((correct/numAsked)*100)
                     //Tells user that answer is correct
                     document.getElementById('verify').innerHTML = `Correct! Your score is ${percentCorrect}%.`
                 } else {
+                    //Increases total questions asked by 1
                     numAsked ++
+                    //Updates score
                     percentCorrect = Math.floor((correct/numAsked)*100)
+                    //Tells user that answer is incorrect
                     document.getElementById('verify').innerHTML = `Incorrect. The correct answer is ${(a * n) + 'x' + (n + 1)} Your score is ${percentCorrect}%.`
                 }
                 //Resets question
-                a = Math.floor((Math.random()*10)+1)
-                n = Math.floor((Math.random()*10)+1)
+                a = Math.floor((Math.random()*9)+1)
+                n = Math.floor((Math.random()*9)+1)
                 document.getElementById('ask').innerHTML = `What is the derivative of the function f(x)=${a}x${n}?`
                 document.getElementById('math_question').reset()
             }

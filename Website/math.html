@@ -16,10 +16,10 @@
     </header>
     <!--Main page information goes here-->
     <body>
-        <h1>
+        <nav>
             <a href = "./derivatives.html">Derivatives Practice</a>
             <a href = "./antiderivatives.html">Antiderivatives Practice</a>
-        </h1>
+        </nav>
         <form id = "math_question">
             <!--Adds a label that displays a question-->
             <label class = "question" id = "ask"></label>
@@ -33,7 +33,9 @@
             //Sets random values for question
             let a = Math.floor(Math.random()*10)
             let b = Math.floor(Math.random()*10)
+            //Prints question with randomly-generated values
             document.getElementById('ask').innerHTML = `What is ${a}+${b}?`
+            //Formats question
             document.getElementById('ask').style.color = "white"
             document.getElementById('ask').style.fontFamily = "sans-serif"
 
@@ -45,20 +47,25 @@
             function checkAnswer() {
                 //Gets the user inputs for math1, math2, and math3
                 var answer = document.getElementById("math")
-                //Formats response
+                //Formatting
                 document.getElementById('verify').style.color = "white"
                 document.getElementById('verify').style.fontFamily = "sans-serif"
                 //Checks if inputs are correct
                 if(answer.value == a + b){
                     //Increases number correct by 1
                     correct ++
+                    //Increases total questions asked by 1
                     numAsked ++
+                    //Updates score
                     percentCorrect = Math.floor((correct/numAsked)*100)
                     //Tells user that answer is correct
                     document.getElementById('verify').innerHTML = `Correct! Your score is ${percentCorrect}%.`
                 } else {
+                    //Increases total questions asked by 1
                     numAsked ++
+                    //Updates score
                     percentCorrect = Math.floor((correct/numAsked)*100)
+                    //Tells user that answer is incorrect
                     document.getElementById('verify').innerHTML = `Incorrect. Your score is ${percentCorrect}%.`
                 }
                 //Resets question
