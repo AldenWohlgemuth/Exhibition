@@ -65,7 +65,7 @@
                     //Updates score
                     percentCorrect = Math.floor((correct/numAsked)*100)
                     //Tells user that answer is incorrect
-                    document.getElementById('verify').innerHTML = `Incorrect. The correct answer is ${(a * n) + 'x' + (n + 1)} Your score is ${percentCorrect}%.`
+                    document.getElementById('verify').innerHTML = `Incorrect. The correct answer is ${(a / (n + 1)) + 'x' + (n + 1)} Your score is ${percentCorrect}%.`
                 }
                 //Resets question
                 a = Math.floor((Math.random()*9)+1)
