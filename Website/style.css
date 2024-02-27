@@ -5,6 +5,9 @@ body {
 .navigation {
     font-family: sans-serif;
     text-align: center;
+    margin: 0 auto;
+    background-color: lightskyblue;
+    border-radius: 10px;
 }
 p {
     color: whitesmoke;
@@ -22,6 +25,7 @@ h1 {
     text-align: center;
     display: block;
     font-size: 24px;
+    margin: 50 auto 20;
 }
 .answer {
     color: black;
@@ -37,5 +41,20 @@ h1 {
     font-family: sans-serif;
     text-align: center;
     position: relative;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+.verify {
+    color: black;
+    font-family: sans-serif;
+    text-align: left;
+    display: block;
+    position: relative;
+    margin: 0 auto 15px auto;
+}
+#math_question {
+    background-color: lightblue;
+    border-radius: 15px;
+    display: block;
     margin: 0 auto;
 }
