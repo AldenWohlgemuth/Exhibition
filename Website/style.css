@@ -35,22 +35,13 @@ h1 {
     position: relative;
     margin: 0 auto;
 }
-.button {
-    background-color: whitesmoke;
-    color: black;
-    font-family: sans-serif;
-    text-align: center;
-    position: relative;
-    border-radius: 5px;
-    margin: 0 auto;
-}
 .verify {
     color: black;
     font-family: sans-serif;
     text-align: left;
     display: block;
     position: relative;
-    margin: 0 auto 15px auto;
+    margin: 15px auto;
 }
 #math_question {
     background-color: lightblue;
