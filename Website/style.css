@@ -5,7 +5,7 @@ body {
 .navigation {
     font-family: sans-serif;
     text-align: center;
-    margin: 0 auto;
+    margin: 20px;
     background-color: skyblue;
     border-radius: 10px;
 }
@@ -16,6 +16,7 @@ p {
     text-align: center;
     background-color: skyblue;
     border-radius: 10px;
+    margin: 20px;
 }
 h1 {
     color: whitesmoke;

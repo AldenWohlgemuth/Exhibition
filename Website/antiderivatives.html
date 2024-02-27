@@ -32,7 +32,7 @@
             //Sets random values for question
             let a = Math.floor((Math.random()*9)+1)
             let n = Math.floor((Math.random()*9)+1)
-            //Prints question with randomly-generated values
+            //Prints question with randomly-generated values (<sup> tag displays an exponent)
             document.getElementById('ask').innerHTML = `What is the antiderivative of the function f(x)=${a}x<sup>${n}</sup>? Type your answer in the form ax^n.`
             //Formats question
             document.getElementById('ask').style.color = "white"
@@ -47,7 +47,7 @@
             function checkAnswer() {
                 //Gets the user inputs for math1, math2, and math3
                 var answer = document.getElementById("math")
-                //Formatting
+                //Formatting (uses same elements as CSS)
                 document.getElementById('verify').style.color = "white"
                 document.getElementById('verify').style.fontFamily = "sans-serif"
                 //Checks if inputs are correct-can't handle fractions, so some questions are currently unsolvable
