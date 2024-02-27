@@ -33,7 +33,7 @@
             let a = Math.floor((Math.random()*9)+1)
             let n = Math.floor((Math.random()*9)+1)
             //Prints question with randomly-generated values
-            document.getElementById('ask').innerHTML = `What is the antiderivative of the function f(x)=${a}x${n}?`
+            document.getElementById('ask').innerHTML = `What is the antiderivative of the function f(x)=${a}x<sup>${n}</sup>? Type your answer in the form ax^n.`
             //Formats question
             document.getElementById('ask').style.color = "white"
             document.getElementById('ask').style.fontFamily = "sans-serif"
@@ -50,7 +50,7 @@
                 document.getElementById('verify').style.color = "white"
                 document.getElementById('verify').style.fontFamily = "sans-serif"
                 //Checks if inputs are correct-can't handle fractions, so some questions are currently unsolvable
-                if(answer.value == (a / (n + 1)) + 'x' + (n + 1)){
+                if(answer.value == (a / (n + 1)) + 'x^' + (n + 1)){
                     //Increases number correct by 1
                     correct ++
                     //Increases total questions asked by 1
@@ -65,12 +65,12 @@
                     //Updates score
                     percentCorrect = Math.floor((correct/numAsked)*100)
                     //Tells user that answer is incorrect
-                    document.getElementById('verify').innerHTML = `Incorrect. The correct answer is ${(a / (n + 1)) + 'x' + (n + 1)} Your score is ${percentCorrect}%.`
+                    document.getElementById('verify').innerHTML = `Incorrect. The correct answer is ${(a / (n + 1))} x <sup>${(n + 1)}</sup> Your score is ${percentCorrect}%.`
                 }
                 //Resets question
                 a = Math.floor((Math.random()*9)+1)
                 n = Math.floor((Math.random()*9)+1)
-                document.getElementById('ask').innerHTML = `What is the derivative of the function f(x)=${a}x${n}?`
+                document.getElementById('ask').innerHTML = `What is the derivative of the function f(x)=${a}x<sup>${n}</sup>? Type your answer in the form ax^n.`
                 document.getElementById('math_question').reset()
             }
         </script>
