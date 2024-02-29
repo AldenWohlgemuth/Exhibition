@@ -9,6 +9,13 @@ body {
     background-color: skyblue;
     border-radius: 10px;
 }
+.math_navigation {
+    font-family: sans-serif;
+    text-align: center;
+    margin: 20px;
+    background-color: skyblue;
+    border-radius: 10px;
+}
 p {
     color: whitesmoke;
     font-family: sans-serif;
@@ -23,6 +30,12 @@ h1 {
     font-family: sans-serif;
     text-align: center;
     font-size: 32px;
+}
+h2 {
+    color: whitesmoke;
+    font-family: sans-serif;
+    text-align: center;
+    font-size: 18px;
 }
 .question {
     color: whitesmoke;
