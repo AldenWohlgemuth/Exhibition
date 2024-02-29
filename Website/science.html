@@ -16,13 +16,15 @@
     </header>
     <!--Main page information goes here-->
     <body>
-        <!--Adds a label that displays a question-->
-        <label class = "question">What is the change in allele frequency in a population called?</label>
-        <!--Creates an input called science1-->
-        <input id = "science1" class = "answer">
-        <!--Creates button that calls checkAnswer when clicked-->
-        <input type = "button" value = "Check Answer" onclick = "checkAnswer()"><span id = "verify"></span>
-        <!--Runs javascript function that checks if answer is correct-->
+        <form class = "study">
+            <!--Adds a label that displays a question-->
+            <label class = "question">What is the change in allele frequency in a population called?</label>
+            <!--Creates an input called science1-->
+            <input id = "science1" class = "answer">
+            <!--Creates button that calls checkAnswer when clicked-->
+            <input type = "button" value = "Check Answer" onclick = "checkAnswer()"><span id = "verify"></span>
+            <!--Runs javascript function that checks if answer is correct-->
+        </form>
         <script>
             function checkAnswer() {
                 //Gets the user inputs for math1, math2, and math3
