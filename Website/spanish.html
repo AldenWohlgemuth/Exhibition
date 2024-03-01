@@ -19,20 +19,20 @@
     <body>
         <form class = "study">
             <!--Adds a label that displays a question-->
-            <label class = "question">What is the first person present conjugation of tener?</label>
-            <!--Creates an input called spanish1-->
-            <input id="spanish1" class = "answer">
+            <label class = "question" id = "ask">What is the first person present conjugation of tener?</label>
+            <!--Creates an input called spanish-->
+            <input id="spanish" class = "answer">
             <!--Creates button that calls checkAnswer when clicked-->
-            <input type = "button" value = "Check Answer" onclick = "checkAnswer()"><span id = "verify"></span>
+            <input type = "button" value = "Check Answer" onclick = "checkAnswer()" class = "verify"><span id = "verify"></span>
             <!--Runs javascript function that checks if answer is correct-->
         </form>
         <script>
             function checkAnswer() {
                 //Gets the user inputs for spanish1
-                var answer1 = document.getElementById("spanish1")
+                var answer = document.getElementById("spanish1")
                 var correct = 0
                 //Checks if inputs are correct
-                if(answer1.value == 'tengo'){
+                if(answer.value == 'tengo'){
                     correct ++
                 }
                 //Displays number of correct answers
