@@ -17,9 +17,9 @@
     </header>
     <!--Main page information goes here-->
     <body>
-        <form class = "study">
+        <form class = "study" id = "spanish_question">
             <!--Adds a label that displays a question-->
-            <label class = "question" id = "ask">What is the first person present conjugation of tener?</label>
+            <label class = "question" id = "ask"></label>
             <!--Creates an input called spanish-->
             <input id="spanish" class = "answer">
             <!--Creates button that calls checkAnswer when clicked-->
@@ -27,18 +27,50 @@
             <!--Runs javascript function that checks if answer is correct-->
         </form>
         <script>
+            //Generates the list of questions and answers (each question is in the same place in the array as the answer)
+            const spanishQuestion = ['la escultura', 'el mural', 'la pintura', 'el autorretrato', 'la naturaleza muerta', 'el retratro', 'la paleta', 'el pincel', 'la figura', 'el fondo']
+            const spanishAnswer = ['sculpture', 'mural', 'painting', 'self-portrait', 'still life', 'portrait', 'palette', 'brush', 'figure', 'background']
+            //Selects a random question
+            let questionNumber = Math.floor(Math.random()*spanishQuestion.length)
+            //Prints the selected question
+            document.getElementById('ask').innerHTML = `What is ${spanishQuestion[questionNumber]} in English?`
+            //Formats question and answer
+            document.getElementById('ask').style.color = "white"
+            document.getElementById('ask').style.fontFamily = "sans-serif"
+            document.getElementById('verify').style.display = "block"
+            document.getElementById('verify').style.textAlign = "center"
+            //Declare variable to tell user their score
+            let correct = 0
+            let numAsked = 0
+            let percentCorrect = 0
+            //Runs when check answer button pressed
             function checkAnswer() {
-                //Gets the user inputs for spanish1
-                var answer = document.getElementById("spanish1")
-                var correct = 0
+                //Gets what the user inputted
+                var answer = document.getElementById("spanish")
                 //Checks if inputs are correct
-                if(answer.value == 'tengo'){
+                if(answer.value == spanishAnswer[questionNumber]){
+                    //Increases number correct and total questions
                     correct ++
+                    numAsked ++
+                    //Updates score
+                    percentCorrect = Math.floor((correct/numAsked)*100)
+                    //Tells user that answer is correct
+                    document.getElementById('verify').innerHTML = `Correct! Your score is ${percentCorrect}%.`
+                } else {
+                    numAsked ++
+                    percentCorrect = Math.floor((correct/numAsked)*100)
+                    //Tells user that answer is incorrect
+                    document.getElementById('verify').innerHTML = `Incorrect. The correct answer is ${spanishAnswer[questionNumber]}. Your score is ${percentCorrect}%.`
                 }
-                //Displays number of correct answers
-                document.getElementById('verify').innerHTML = `You got ${correct} questions correct.`
-                document.getElementById('verify').style.color = "white"
-                document.getElementById('verify').style.fontFamily = "sans-serif"
+                //Resets question
+                questionNumberTest = Math.floor(Math.random()*spanishQuestion.length)
+                //Ensures user won't get the same question twice
+                while (questionNumberTest == questionNumber){
+                    questionNumberTest = Math.floor(Math.random()*spanishQuestion.length)
+                }
+                questionNumber = questionNumberTest
+                document.getElementById('ask').innerHTML = `What is ${spanishQuestion[questionNumber]} in English?`
+                document.getElementById('spanish_question').reset()
             }
         </script>
     </body>
