@@ -37,9 +37,11 @@
             let a = Math.floor((Math.random()*9)+1)
             let n = Math.floor((Math.random()*9)+1)
             let t = Math.floor((Math.random()*9)+1)
+            //Lists the different integration question types: power rule, natural log, and chain rule
             const integralQuestion = [`${a}x<sup>${n}</sup>`,`<span class="f"><div class="n">${a * n}x<sup>${n - 1}</sup></div><div class="d">${a}x<sup>${n}</sup></div></span>`, `${a*n}x<sup>${n-1}</sup>(${a}x<sup>${n}</sup>)<sup>${t}</sup>`]
+            //Selects a random question type to ask
             let questionNumber = Math.floor(Math.random()*integralQuestion.length)
-            //Prints question with randomly-generated values (<sup> tag displays an exponent)
+            //Prints question with randomly-generated values (<sup> tag displays an exponent, and &#8747 displas an integral symbol)
             document.getElementById('ask').innerHTML = `Evaluate the integral &#8747 ${integralQuestion[questionNumber]} dx. Type exponents as x^n, and natural logs as ln(f(x)).`
             //Formats question and answer
             document.getElementById('ask').style.color = "white"
