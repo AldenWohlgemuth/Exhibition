@@ -4,8 +4,8 @@
     <head>
         <!--Allows for formatting-->
         <link href="style.css" rel="stylesheet">
-        <title>Math Study Page-Derivatives Practice</title>
-        <h1>Math Study Page-Derivatives Practice</h1>
+        <title>Math Study Page-Integration Practice</title>
+        <h1>Math Study Page-Integration Practice</h1>
     </head>
     <header>
         <nav class = "navigation">
@@ -21,7 +21,7 @@
             <h2>Additional Math Topics:</h2>
             <a href = "./math.html">Math Home</a>
             <a href = "./derivatives.html">Derivatives Practice</a>
-            <a href = "./integration.html">Integration Practice</a>
+            <a href = "./antiderivatives.html">Antiderivatives Practice</a>
         </nav>
         <form class = "study" id = "math_question">
             <!--Adds a label that displays a question-->
@@ -36,7 +36,8 @@
             //Sets random values for question
             let a = Math.floor((Math.random()*9)+1)
             let n = Math.floor((Math.random()*9)+1)
-            const integralQuestion = [`${a}x<sup>${n}</sup>`, `(${a * n}x<sup>${n - 1}</sup>)/(${a}x<sup>${n}</sup>)`]
+            let t = Math.floor((Math.random()*9)+1)
+            const integralQuestion = [`${a}x<sup>${n}</sup>`,`<span class="f"><div class="n">${a * n}x<sup>${n - 1}</sup></div><div class="d">${a}x<sup>${n}</sup></div></span>`, `${a*n}x<sup>${n-1}</sup>(${a}x<sup>${n}</sup>)<sup>${t}</sup>`]
             let questionNumber = Math.floor(Math.random()*integralQuestion.length)
             //Prints question with randomly-generated values (<sup> tag displays an exponent)
             document.getElementById('ask').innerHTML = `Evaluate the integral &#8747 ${integralQuestion[questionNumber]} dx. Type exponents as x^n, and natural logs as ln(f(x)).`
@@ -102,11 +103,39 @@
                             //Tells user that answer is incorrect
                             document.getElementById('verify').innerHTML = `Incorrect. The correct answer is ${'ln(' + a + 'x^' + n + ')+c'} Your score is ${percentCorrect}%.`
                         }
+                }   else if (questionNumber == 2) {
+                        if (answer.value == `1/${t + 1}(${a}x^${n})^${t+1}+c`){
+                            //Increases number correct by 1
+                            correct ++
+                            //Increases total questions asked by 1
+                            numAsked ++
+                            //Updates score
+                            percentCorrect = Math.floor((correct/numAsked)*100)
+                            //Tells user that answer is correct
+                            document.getElementById('verify').innerHTML = `Correct! Your score is ${percentCorrect}%.`
+                        } else if (answer.value == `${1/(t + 1)}(${a}x^${n})^${t+1}+c`){
+                            //Increases number correct by 1
+                            correct ++
+                            //Increases total questions asked by 1
+                            numAsked ++
+                            //Updates score
+                            percentCorrect = Math.floor((correct/numAsked)*100)
+                            //Tells user that answer is correct
+                            document.getElementById('verify').innerHTML = `Correct! Your score is ${percentCorrect}%.`
+                        } else {
+                            //Increases total questions asked by 1
+                            numAsked ++
+                            //Updates score
+                            percentCorrect = Math.floor((correct/numAsked)*100)
+                            //Tells user that answer is incorrect
+                            document.getElementById('verify').innerHTML = `Incorrect. The correct answer is ${`1/${t + 1}(${a}x^${n})^${t+1}+c`} Your score is ${percentCorrect}%.`
+                        }
                 }
                 //Resets question
                 a = Math.floor((Math.random()*9)+1)
                 n = Math.floor((Math.random()*9)+1)
-                const integralQuestion = [`${a}x<sup>${n}</sup>`, `(${a * n}x<sup>${n - 1}</sup>)/(${a}x<sup>${n}</sup>)`]
+                t = Math.floor((Math.random()*9)+1)
+                const integralQuestion = [`${a}x<sup>${n}</sup>`,`<span class="f"><div class="n">${a * n}x<sup>${n - 1}</sup></div><div class="d">${a}x<sup>${n}</sup></div></span>`, `${a*n}x<sup>${n-1}</sup>(${a}x<sup>${n}</sup>)<sup>${t}</sup>`]
                 questionNumber = Math.floor(Math.random()*integralQuestion.length)
                 document.getElementById('ask').innerHTML = `Evaluate the integral &#8747 ${integralQuestion[questionNumber]} dx. Type exponents as x^n, and natural logs as ln(f(x)).`
                 document.getElementById('math_question').reset()
