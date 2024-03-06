@@ -8,6 +8,7 @@ body {
     margin: 20px;
     background-color: cornflowerblue;
     border-radius: 10px;
+    color: whitesmoke;
 }
 .math_navigation {
     font-family: sans-serif;
@@ -15,6 +16,7 @@ body {
     margin: 20px;
     background-color: cornflowerblue;
     border-radius: 10px;
+    color: whitesmoke;
 }
 p {
     color: whitesmoke;
