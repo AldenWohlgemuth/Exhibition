@@ -32,16 +32,16 @@
         </form>
         <!--Runs javascript function that checks if answer is correct-->
         <script>
-            //Sets random values for question
-            let a = Math.floor((Math.random()*9)+1)
-            let n = Math.floor((Math.random()*9)+1)
-            let t = Math.floor((Math.random()*9)+1)
-            //Lists the different integration question types: power rule, natural log, and chain rule
-            const integralQuestion = [`${a}x<sup>${n}</sup>`,`<span class="f"><div class="n">${a * n}x<sup>${n - 1}</sup></div><div class="d">${a}x<sup>${n}</sup></div></span>`, `${a*n}x<sup>${n-1}</sup>(${a}x<sup>${n}</sup>)<sup>${t}</sup>`]
+            //Declare variables
+            let a 
+            let n
+            let t 
+            var integralQuestion
+            var integralAnswer1
+            var integralAnswer2
+            var displayAnswer
             //Selects a random question type to ask
-            let questionNumber = Math.floor(Math.random()*integralQuestion.length)
-            //Prints question with randomly-generated values (<sup> tag displays an exponent, and &#8747 displas an integral symbol)
-            document.getElementById('ask').innerHTML = `Evaluate the integral &#8747 ${integralQuestion[questionNumber]} dx. Type exponents as x^n, and natural logs as ln(f(x)).`
+            let questionNumber
             //Formats question and answer
             document.getElementById('ask').style.color = "white"
             document.getElementById('ask').style.fontFamily = "sans-serif"
@@ -51,6 +51,8 @@
             let correct = 0
             let numAsked = 0
             let percentCorrect = 0
+            //Calls reset function to set up the question
+            reset()
 
             //Allows for pressing the answer key to run the checkAnswer function (currently nonfunctional)
             //Could it be geting math input again?
@@ -65,6 +67,26 @@
             /*var check = getElementById('check')
             check.addEventListener("click", checkAnswer)*/
 
+            function reset() {
+                //Sets random values for question
+                a = Math.floor((Math.random()*9)+1)
+                n = Math.floor((Math.random()*9)+1)
+                t = Math.floor((Math.random()*9)+1)
+                //Lists the different integration question types: power rule, natural log, and chain rule
+                integralQuestion = [`${a}x<sup>${n}</sup>`,`<span class="f"><div class="n">${a * n}x<sup>${n - 1}</sup></div><div class="d">${a}x<sup>${n}</sup></div></span>`, `${a*n}x<sup>${n-1}</sup>(${a}x<sup>${n}</sup>)<sup>${t}</sup>`]
+                //Gives the two (1 for natural log) acceptable answers for each question type
+                integralAnswer1 = [`${a / (n + 1)}x^${(n + 1)}+c`, 'ln(' + a + 'x^' + n + ')+c', `1/${t + 1}(${a}x^${n})^${t+1}+c`]
+                integralAnswer2 = [`${a}/${(n + 1)}x^${(n + 1)}+c`, 'ln(' + a + 'x^' + n + ')+c', `${1/(t + 1)}(${a}x^${n})^${t+1}+c`]
+                //Creates answers that will be shown if user gets question incorrect
+                displayAnswer = [`${a / (n + 1)}x<sup>${(n + 1)}</sup>+c`, `ln(${a}x<sup>${n}</sup>)+c`, `1/${t + 1}(${a}x<sup>${n}</sup>)<sup>${t+1}</sup>+c`]
+                //Chooses which question type to use
+                questionNumber = Math.floor(Math.random()*integralQuestion.length)
+                //Prints question with randomly-generated values (<sup> tag displays an exponent, and &#8747 displas an integral symbol)
+                document.getElementById('ask').innerHTML = `Evaluate the integral &#8747 ${integralQuestion[questionNumber]} dx. Type exponents as x^n, and natural logs as ln(f(x)).`
+                //Clears input space
+                document.getElementById('math_question').reset()
+            }
+
             function checkAnswer() {
                 //Gets the user inputs for math1, math2, and math3
                 var answer = document.getElementById("math")
@@ -72,87 +94,34 @@
                 document.getElementById('verify').style.color = "white"
                 document.getElementById('verify').style.fontFamily = "sans-serif"
                 //Checks if inputs are correct
-                if (questionNumber == 0) {
-                    if (answer.value == (`${a / (n + 1)}x^${(n + 1)}+c`)){
-                        //Increases number correct by 1
-                        correct ++
-                        //Increases total questions asked by 1
-                        numAsked ++
-                        //Updates score
-                        percentCorrect = Math.floor((correct/numAsked)*100)
-                        //Tells user that answer is correct
-                        document.getElementById('verify').innerHTML = `Correct! Your score is ${percentCorrect}%.`
-                    } else if (answer.value == (`${a}/${(n + 1)}x^${(n + 1)}+c`)) {
-                        //Increases number correct by 1
-                        correct ++
-                        //Increases total questions asked by 1
-                        numAsked ++
-                        //Updates score
-                        percentCorrect = Math.floor((correct/numAsked)*100)
-                        //Tells user that answer is correct
-                        document.getElementById('verify').innerHTML = `Correct! Your score is ${percentCorrect}%.`
-                    } else {
-                        //Increases total questions asked by 1
-                        numAsked ++
-                        //Updates score
-                        percentCorrect = Math.floor((correct/numAsked)*100)
-                        //Tells user that answer is incorrect
-                        document.getElementById('verify').innerHTML = `Incorrect. The correct answer is ${a / (n + 1)}x^${(n + 1)}+c. Your answer was ${answer.value}. Your score is ${percentCorrect}%.`
-                    }
-                }   else if (questionNumber == 1) {
-                        if (answer.value == 'ln(' + a + 'x^' + n + ')+c'){
-                            //Increases number correct by 1
-                            correct ++
-                            //Increases total questions asked by 1
-                            numAsked ++
-                            //Updates score
-                            percentCorrect = Math.floor((correct/numAsked)*100)
-                            //Tells user that answer is correct
-                            document.getElementById('verify').innerHTML = `Correct! Your score is ${percentCorrect}%.`
-                        } else {
-                            //Increases total questions asked by 1
-                            numAsked ++
-                            //Updates score
-                            percentCorrect = Math.floor((correct/numAsked)*100)
-                            //Tells user that answer is incorrect
-                            document.getElementById('verify').innerHTML = `Incorrect. The correct answer is ${'ln(' + a + 'x^' + n + ')+c'}. Your answer was ${answer.value}. Your score is ${percentCorrect}%.`
-                        }
-                }   else if (questionNumber == 2) {
-                        if (answer.value == `1/${t + 1}(${a}x^${n})^${t+1}+c`){
-                            //Increases number correct by 1
-                            correct ++
-                            //Increases total questions asked by 1
-                            numAsked ++
-                            //Updates score
-                            percentCorrect = Math.floor((correct/numAsked)*100)
-                            //Tells user that answer is correct
-                            document.getElementById('verify').innerHTML = `Correct! Your score is ${percentCorrect}%.`
-                        } else if (answer.value == `${1/(t + 1)}(${a}x^${n})^${t+1}+c`){
-                            //Increases number correct by 1
-                            correct ++
-                            //Increases total questions asked by 1
-                            numAsked ++
-                            //Updates score
-                            percentCorrect = Math.floor((correct/numAsked)*100)
-                            //Tells user that answer is correct
-                            document.getElementById('verify').innerHTML = `Correct! Your score is ${percentCorrect}%.`
-                        } else {
-                            //Increases total questions asked by 1
-                            numAsked ++
-                            //Updates score
-                            percentCorrect = Math.floor((correct/numAsked)*100)
-                            //Tells user that answer is incorrect
-                            document.getElementById('verify').innerHTML = `Incorrect. The correct answer is ${`1/${t + 1}(${a}x^${n})^${t+1}+c`}. Your answer was ${answer.value}. Your score is ${percentCorrect}%.`
-                        }
+                if (answer.value == integralAnswer1[questionNumber]) {
+                    //Increases number correct by 1
+                    correct ++
+                    //Increases total questions asked by 1
+                    numAsked ++
+                    //Updates score
+                    percentCorrect = Math.floor((correct/numAsked)*100)
+                    //Tells user that answer is correct
+                    document.getElementById('verify').innerHTML = `Correct! Your score is ${percentCorrect}%.`
+                } else if (answer.value == integralAnswer2[questionNumber]) {
+                    //Increases number correct by 1
+                    correct ++
+                    //Increases total questions asked by 1
+                    numAsked ++
+                    //Updates score
+                    percentCorrect = Math.floor((correct/numAsked)*100)
+                    //Tells user that answer is correct
+                    document.getElementById('verify').innerHTML = `Correct! Your score is ${percentCorrect}%.`
+                } else {
+                    //Increases total questions asked by 1
+                    numAsked ++
+                    //Updates score
+                    percentCorrect = Math.floor((correct/numAsked)*100)
+                    //Tells user that answer is incorrect
+                    document.getElementById('verify').innerHTML = `Incorrect. The correct answer is ${displayAnswer[questionNumber]}. Your answer was ${answer.value}. Your score is ${percentCorrect}%.`
                 }
                 //Resets question
-                a = Math.floor((Math.random()*9)+1)
-                n = Math.floor((Math.random()*9)+1)
-                t = Math.floor((Math.random()*9)+1)
-                const integralQuestion = [`${a}x<sup>${n}</sup>`,`<span class="f"><div class="n">${a * n}x<sup>${n - 1}</sup></div><div class="d">${a}x<sup>${n}</sup></div></span>`, `${a*n}x<sup>${n-1}</sup>(${a}x<sup>${n}</sup>)<sup>${t}</sup>`]
-                questionNumber = Math.floor(Math.random()*integralQuestion.length)
-                document.getElementById('ask').innerHTML = `Evaluate the integral &#8747 ${integralQuestion[questionNumber]} dx. Type exponents as x^n, and natural logs as ln(f(x)).`
-                document.getElementById('math_question').reset()
+                reset()
             }
         </script>
     </body>
