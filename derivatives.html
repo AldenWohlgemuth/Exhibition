@@ -21,7 +21,6 @@
             <h2>Math Topics:</h2>
             <a href = "./math.html">Math Home</a>
             <a>Derivatives Practice</a>
-            <a href = "./antiderivatives.html">Antiderivatives Practice</a>
             <a href = "./integration.html">Integration Practice</a>
         </nav>
         <form class = "study" id = "math_question">
@@ -31,14 +30,17 @@
             <input id="math" class = "answer">
             <!--Creates button that calls checkAnswer when clicked-->
             <input type = "button" value = "Check Answer" onclick = "checkAnswer()" class = "verify"><span id = "verify"></span>
-            <!--Runs javascript function that checks if answer is correct-->
         </form>
+        <!--Runs javascript function that checks if answer is correct-->
         <script>
             //Sets random values for question
             let a = Math.floor((Math.random()*9)+1)
             let n = Math.floor((Math.random()*9)+1)
+            let t = Math.floor((Math.random()*5)+1)
+            const derivativeQuestion = [`f(x)=${a}x<sup>${n}</sup>`, `(${a}x<sup>${n}</sup>)<sup>${t}</sup>`]
+            let derivativeQuestionNumber = Math.floor(Math.random()*derivativeQuestion.length)
             //Prints question with randomly-generated values (<sup> tag displays an exponent)
-            document.getElementById('ask').innerHTML = `What is the derivative of the function f(x)=${a}x<sup>${n}</sup>? Type your answer in the form ax^n.`
+            document.getElementById('ask').innerHTML = `What is the derivative of the function ${derivativeQuestion[derivativeQuestionNumber]}? Type any exponents in the form x^n.`
             //Formats question and answer
             document.getElementById('ask').style.color = "white"
             document.getElementById('ask').style.fontFamily = "sans-serif"
@@ -56,27 +58,50 @@
                 document.getElementById('verify').style.color = "white"
                 document.getElementById('verify').style.fontFamily = "sans-serif"
                 //Checks if inputs are correct
-                if(answer.value == (a * n) + 'x^' + (n - 1)){
-                    //Increases number correct by 1
-                    correct ++
-                    //Increases total questions asked by 1
-                    numAsked ++
-                    //Updates score
-                    percentCorrect = Math.floor((correct/numAsked)*100)
-                    //Tells user that answer is correct
-                    document.getElementById('verify').innerHTML = `Correct! Your score is ${percentCorrect}%.`
-                } else {
-                    //Increases total questions asked by 1
-                    numAsked ++
-                    //Updates score
-                    percentCorrect = Math.floor((correct/numAsked)*100)
-                    //Tells user that answer is incorrect
-                    document.getElementById('verify').innerHTML = `Incorrect. The correct answer is ${(a * n)} x <sup>${(n - 1)}</sup> Your score is ${percentCorrect}%.`
+                if (derivativeQuestionNumber == 0) {
+                    if(answer.value == (a * n) + 'x^' + (n - 1)){
+                        //Increases number correct by 1
+                        correct ++
+                        //Increases total questions asked by 1
+                        numAsked ++
+                        //Updates score
+                        percentCorrect = Math.floor((correct/numAsked)*100)
+                        //Tells user that answer is correct
+                        document.getElementById('verify').innerHTML = `Correct! Your score is ${percentCorrect}%.`
+                    } else {
+                        //Increases total questions asked by 1
+                        numAsked ++
+                        //Updates score
+                        percentCorrect = Math.floor((correct/numAsked)*100)
+                        //Tells user that answer is incorrect
+                        document.getElementById('verify').innerHTML = `Incorrect. The correct answer is ${(a * n)}x<sup>${(n - 1)}</sup>. Your answer was ${answer.value}. Your score is ${percentCorrect}%.`
+                    }
+                } else if (derivativeQuestionNumber == 1) {
+                    if (answer.value == `${a*n*t}x^${n-1}(${a}x^${n})^${t-1}`) {
+                        //Increases number correct by 1
+                        correct ++
+                        //Increases total questions asked by 1
+                        numAsked ++
+                        //Updates score
+                        percentCorrect = Math.floor((correct/numAsked)*100)
+                        //Tells user that answer is correct
+                        document.getElementById('verify').innerHTML = `Correct! Your score is ${percentCorrect}%.`
+                    } else {
+                        //Increases total questions asked by 1
+                        numAsked ++
+                        //Updates score
+                        percentCorrect = Math.floor((correct/numAsked)*100)
+                        //Tells user that answer is incorrect
+                        document.getElementById('verify').innerHTML = `Incorrect. The correct answer is ${a*n*t}x<sup>${n-1}</sup>(${a}x<sup>${n}</sup>)<sup>${t-1}</sup>. Your answer was ${answer.value}. Your score is ${percentCorrect}%.`
+                    }
                 }
                 //Resets question
                 a = Math.floor((Math.random()*9)+1)
                 n = Math.floor((Math.random()*9)+1)
-                document.getElementById('ask').innerHTML = `What is the derivative of the function f(x)=${a}x<sup>${n}</sup>? Type your answer in the form ax^n.`
+                t = Math.floor((Math.random()*9)+1)
+                const derivativeQuestion = [`f(x)=${a}x<sup>${n}</sup>`, `(${a}x<sup>${n}</sup>)<sup>${t}</sup>`]
+                derivativeQuestionNumber = Math.floor(Math.random()*derivativeQuestion.length)
+                document.getElementById('ask').innerHTML = `What is the derivative of the function ${derivativeQuestion[derivativeQuestionNumber]}? Type any exponents in the form x^n.`
                 document.getElementById('math_question').reset()
             }
         </script>

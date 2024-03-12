@@ -20,7 +20,6 @@
             <h2>Math Topics:</h2>
             <a href = "./math.html">Math Home</a>
             <a href = "./derivatives.html">Derivatives Practice</a>
-            <a href = "./antiderivatives.html">Antiderivatives Practice</a>
             <a>Integration Practice</a>
         </nav>
         <form class = "study" id = "math_question">
@@ -30,8 +29,8 @@
             <input id="math" class = "answer">
             <!--Creates button that calls checkAnswer when clicked-->
             <input type = "button" value = "Check Answer" onclick = "checkAnswer()" class = "verify" id = "check"><span id = "verify"></span>
-            <!--Runs javascript function that checks if answer is correct-->
         </form>
+        <!--Runs javascript function that checks if answer is correct-->
         <script>
             //Sets random values for question
             let a = Math.floor((Math.random()*9)+1)
