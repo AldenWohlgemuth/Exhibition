@@ -39,7 +39,7 @@
             let t
             var derivativeQuestion
             var derivativeAnswer
-            let derivativeQuestionNumber
+            let QuestionNumber
             //Formats question and answer
             document.getElementById('ask').style.color = "white"
             document.getElementById('ask').style.fontFamily = "sans-serif"
@@ -62,9 +62,11 @@
                 //List of question answers
                 derivativeAnswer = [(a * n) + 'x^' + (n - 1), `${a*n*t}x^${n-1}(${a}x^${n})^${t-1}`]
                 displayAnswer = [`${(a * n)}x<sup>${(n - 1)}</sup>`, `${a*n*t}x<sup>${n-1}</sup>(${a}x<sup>${n}</sup>)<sup>${t-1}</sup>`]
-                derivativeQuestionNumber = Math.floor(Math.random()*derivativeQuestion.length)
+                QuestionNumber = Math.floor(Math.random()*derivativeQuestion.length)
                 //Prints question with randomly-generated values (<sup> tag displays an exponent)
-                document.getElementById('ask').innerHTML = `What is the derivative of the function ${derivativeQuestion[derivativeQuestionNumber]}? Type any exponents in the form x^n.`
+                document.getElementById('ask').innerHTML = `What is the derivative of the function ${derivativeQuestion[QuestionNumber]}? Type any exponents in the form x^n.`
+                //Prints the answer the user's inputs is being checked against to the console
+                console.log(`The answer for this question is ${derivativeAnswer[QuestionNumber]}`)
                 //Clears input space
                 document.getElementById('math_question').reset()
             }
@@ -76,7 +78,7 @@
                 document.getElementById('verify').style.color = "white"
                 document.getElementById('verify').style.fontFamily = "sans-serif"
                 //Checks if inputs are correct
-                if (answer.value == derivativeAnswer[derivativeQuestionNumber]) {
+                if (answer.value == derivativeAnswer[QuestionNumber]) {
                     //Increases number correct by 1
                     correct ++
                     //Increases total questions asked by 1
@@ -91,7 +93,7 @@
                     //Updates score
                     percentCorrect = Math.floor((correct/numAsked)*100)
                     //Tells user that answer is incorrect
-                    document.getElementById('verify').innerHTML = `Incorrect. The correct answer is ${displayAnswer[derivativeQuestionNumber]}</sup>. Your answer was ${answer.value}. Your score is ${percentCorrect}%.`
+                    document.getElementById('verify').innerHTML = `Incorrect. The correct answer is ${displayAnswer[QuestionNumber]}</sup>. Your answer was ${answer.value}. Your score is ${percentCorrect}%.`
                 }
                 //Resets question
                 reset()

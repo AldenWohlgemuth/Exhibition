@@ -41,7 +41,7 @@
             var integralAnswer2
             var displayAnswer
             //Selects a random question type to ask
-            let questionNumber
+            var questionNumber
             //Formats question and answer
             document.getElementById('ask').style.color = "white"
             document.getElementById('ask').style.fontFamily = "sans-serif"
@@ -83,6 +83,8 @@
                 questionNumber = Math.floor(Math.random()*integralQuestion.length)
                 //Prints question with randomly-generated values (<sup> tag displays an exponent, and &#8747 displas an integral symbol)
                 document.getElementById('ask').innerHTML = `Evaluate the integral &#8747 ${integralQuestion[questionNumber]} dx. Type exponents as x^n, and natural logs as ln(f(x)).`
+                //Prints the answer the user's inputs is being checked against to the console
+                console.log(`The acceptable answers for this question is ${integralAnswer1[questionNumber]}, ${integralAnswer2[questionNumber]}`)
                 //Clears input space
                 document.getElementById('math_question').reset()
             }
