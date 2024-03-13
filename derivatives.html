@@ -58,10 +58,10 @@
                 n = Math.floor((Math.random()*5)+1)
                 t = Math.floor((Math.random()*5)+1)
                 //List of question types
-                derivativeQuestion = [`f(x)=${a}x<sup>${n}</sup>`, `(${a}x<sup>${n}</sup>)<sup>${t}</sup>`]
+                derivativeQuestion = [`f(x)=${a}x<sup>${n}</sup>`, `(${a}x<sup>${n}</sup>)<sup>${t}</sup>`, `sin(${a}x<sup>${n}</sup>)`, `cos(${a}x<sup>${n}</sup>)`]
                 //List of question answers
-                derivativeAnswer = [(a * n) + 'x^' + (n - 1), `${a*n*t}x^${n-1}(${a}x^${n})^${t-1}`]
-                displayAnswer = [`${(a * n)}x<sup>${(n - 1)}</sup>`, `${a*n*t}x<sup>${n-1}</sup>(${a}x<sup>${n}</sup>)<sup>${t-1}</sup>`]
+                derivativeAnswer = [(a * n) + 'x^' + (n - 1), `${a*n*t}x^${n-1}(${a}x^${n})^${t-1}`, `(${(a * n)}x^${(n - 1)})cos(${a}x^${n})`, `-(${(a * n)}x^${(n - 1)})sin(${a}x^${n})`]
+                displayAnswer = [`${(a * n)}x<sup>${(n - 1)}</sup>`, `${a*n*t}x<sup>${n-1}</sup>(${a}x<sup>${n}</sup>)<sup>${t-1}</sup>`, `(${(a * n)}x<sup>${(n - 1)}</sup>)cos(${a}x<sup>${n}</sup>)`, `-(${(a * n)}x<sup>${(n - 1)}</sup>)sin(${a}x<sup>${n}</sup>)`]
                 QuestionNumber = Math.floor(Math.random()*derivativeQuestion.length)
                 //Prints question with randomly-generated values (<sup> tag displays an exponent)
                 document.getElementById('ask').innerHTML = `What is the derivative of the function ${derivativeQuestion[QuestionNumber]}? Type any exponents in the form x^n.`
