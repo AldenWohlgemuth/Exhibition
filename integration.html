@@ -47,6 +47,7 @@
             var displayAnswer
             var exampleQuestion
             var exampleAnswer
+            var exampleExplanation
             //Selects a random question type to ask
             var questionNumber
             var returnValue
@@ -91,18 +92,18 @@
                 integralAnswer2 = [`${a}/${(n + 1)}x^${(n + 1)}+c`, 'ln(' + a + 'x^' + n + ')+c', `${1/(t + 1)}(${a}x^${n})^${t+1}+c`]
                 //Creates answers that will be shown if user gets question incorrect
                 displayAnswer = [`${a}/${(n + 1)}x<sup>${(n + 1)}</sup>+c`, `ln(${a}x<sup>${n}</sup>)+c`, `1/${t + 1}(${a}x<sup>${n}</sup>)<sup>${t+1}</sup>+c`]
-                //Creates an example question and answer that, when this program is finished, will be displayed beneath the question
-                exampleQuestion = [`${a2}x<sup>${n2}</sup>`,`<span class="f"><div class="n">${a2 * n2}x<sup>${n2 - 1}</sup></div><div class="d">${a}x<sup>${n2}</sup></div></span>`, `${a2*n2}x<sup>${n2-1}</sup>(${a2}x<sup>${n2}</sup>)<sup>${t2}</sup>`]
+                //Creates an example question, answer, and explanation that, when this program is finished, will be displayed beneath the question
+                exampleQuestion = [`${a2}x<sup>${n2}</sup>`,`<span class="f"><div class="n">${a2 * n2}x<sup>${n2 - 1}</sup></div><div class="d">${a2}x<sup>${n2}</sup></div></span>`, `${a2*n2}x<sup>${n2-1}</sup>(${a2}x<sup>${n2}</sup>)<sup>${t2}</sup>`]
                 exampleAnswer = [`${a2}/${(n2 + 1)}x<sup>${(n2 + 1)}</sup>+c`, `ln(${a2}x<sup>${n2}</sup>)+c`, `1/${t2 + 1}(${a2}x<sup>${n2}</sup>)<sup>${t2+1}</sup>+c`]
+                exampleExplanation = [`In order to antiderive this problem, you need to use the reverse power rule. First, divide the a-value (${a2}) by 1 plus the n-value (${n2+1}). Then, add 1 to the n-value (${n2}).`, `This problem is in u'/u format, as the degree of the numerator is one less than the degree of the denominator. in order to antiderive it, you would put the denominator (${a2}x<sup>${n2}</sup>) inside the natural log function.`, `This problem requires you to antiderive a chain rule function. To do this, leave the parent function (${a2}x<sup>${n2}</sup>) alone, and then use the reverse power rule (divide the function by 1 plus the n-value, and add one to the n value).`]
                 //Chooses which question type to use
                 questionNumber = Math.floor(Math.random()*integralQuestion.length)
-                //Prints question with randomly-generated values (<sup> tag displays an exponent, and &#8747 displas an integral symbol)
+                //Prints question with randomly-generated values (<sup> tag displays an exponent, and &#8747 displays an integral symbol)
                 document.getElementById('ask').innerHTML = `Evaluate the integral &#8747 ${integralQuestion[questionNumber]} dx. Type exponents as x^n, and natural logs as ln(f(x)).`
                 //Prints the answer the user's inputs is being checked against to the console
                 console.log(`The acceptable answers for this question is ${integralAnswer1[questionNumber]}, ${integralAnswer2[questionNumber]}`)
-                //The commented-out line below will print an example question of the same type
-                //Its currently commented out since I want to figure out how to provide an explanation along with the example, if I include it at all
-                //document.getElementById('example').innerHTML = `The antiderivative of ${exampleQuestion[questionNumber]} is ${exampleAnswer[questionNumber]}.`
+                //The line below will print an example question of the same type
+                document.getElementById('example').innerHTML = `The antiderivative of &#8747 ${exampleQuestion[questionNumber]} dx is ${exampleAnswer[questionNumber]}. ${exampleExplanation[questionNumber]} Remember to add +c at the end to represent the fact that the solution is a family of functions. The final answer is ${exampleAnswer[questionNumber]}.`
                 //Clears input space
                 document.getElementById('math_question').reset()
             }

@@ -5,7 +5,7 @@ body {
 .navigation {
     font-family: sans-serif;
     text-align: center;
-    margin: 20px;
+    margin: 30px;
     background-color: cornflowerblue;
     border-radius: 10px;
     color: whitesmoke;
@@ -13,7 +13,7 @@ body {
 .math_navigation {
     font-family: sans-serif;
     text-align: center;
-    margin: 20px;
+    margin: 30px;
     background-color: cornflowerblue;
     border-radius: 10px;
     color: whitesmoke;
@@ -25,7 +25,7 @@ p {
     text-align: center;
     background-color: cornflowerblue;
     border-radius: 10px;
-    margin: 20px;
+    margin: 30px;
 }
 h1 {
     color: whitesmoke;
@@ -45,7 +45,7 @@ h2 {
     text-align: center;
     display: block;
     font-size: 24px;
-    margin: 15px auto;
+    margin: 30px auto;
 }
 .answer {
     color: black;
@@ -62,7 +62,7 @@ h2 {
     text-align: left;
     display: block;
     position: relative;
-    margin: 15px auto;
+    margin: 30px auto;
     border-radius: 5px;
 }
 .study {
@@ -70,7 +70,7 @@ h2 {
     background-color: cornflowerblue;
     border-radius: 15px;
     display: block;
-    margin: 0 auto;
+    margin: 30px;
 }
 .f {
     font-size: 16px;

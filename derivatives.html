@@ -31,15 +31,23 @@
             <!--Creates button that calls checkAnswer when clicked-->
             <input type = "button" value = "Check Answer" onclick = "checkAnswer()" class = "verify"><span id = "verify"></span>
         </form>
+        <p id = 'example'>
+        </p>
         <!--Runs javascript function that checks if answer is correct-->
         <script>
             //Declare variables for question
             let a
             let n
             let t
+            let a2
+            let n2
+            let t2
             var derivativeQuestion
             var derivativeAnswer
-            let QuestionNumber
+            let questionNumber
+            var exampleQuestion
+            var exampleAnswer
+            var exampleExplanation
             //Formats question and answer
             document.getElementById('ask').style.color = "white"
             document.getElementById('ask').style.fontFamily = "sans-serif"
@@ -57,16 +65,25 @@
                 a = Math.floor((Math.random()*5)+1)
                 n = Math.floor((Math.random()*5)+1)
                 t = Math.floor((Math.random()*5)+1)
+                //Variables for example question
+                a2 = Math.floor((Math.random()*5)+1)
+                n2 = Math.floor((Math.random()*5)+1)
+                t2 = Math.floor((Math.random()*5)+1)
                 //List of question types
-                derivativeQuestion = [`f(x)=${a}x<sup>${n}</sup>`, `(${a}x<sup>${n}</sup>)<sup>${t}</sup>`, `sin(${a}x<sup>${n}</sup>)`, `cos(${a}x<sup>${n}</sup>)`]
+                derivativeQuestion = [`${a}x<sup>${n}</sup>`, `(${a}x<sup>${n}</sup>)<sup>${t}</sup>`, `sin(${a}x<sup>${n}</sup>)`, `cos(${a}x<sup>${n}</sup>)`]
                 //List of question answers
                 derivativeAnswer = [(a * n) + 'x^' + (n - 1), `${a*n*t}x^${n-1}(${a}x^${n})^${t-1}`, `(${(a * n)}x^${(n - 1)})cos(${a}x^${n})`, `-(${(a * n)}x^${(n - 1)})sin(${a}x^${n})`]
                 displayAnswer = [`${(a * n)}x<sup>${(n - 1)}</sup>`, `${a*n*t}x<sup>${n-1}</sup>(${a}x<sup>${n}</sup>)<sup>${t-1}</sup>`, `(${(a * n)}x<sup>${(n - 1)}</sup>)cos(${a}x<sup>${n}</sup>)`, `-(${(a * n)}x<sup>${(n - 1)}</sup>)sin(${a}x<sup>${n}</sup>)`]
-                QuestionNumber = Math.floor(Math.random()*derivativeQuestion.length)
+                //Creates an example question, answer, and explanation that, when this program is finished, will be displayed beneath the question
+                exampleQuestion = [`${a2}x<sup>${n2}</sup>`, `(${a2}x<sup>${n2}</sup>)<sup>${t2}</sup>`, `sin(${a2}x<sup>${n2}</sup>)`, `cos(${a2}x<sup>${n2}</sup>)`]
+                exampleAnswer = [`${(a2 * n2)}x<sup>${(n2 - 1)}</sup>`, `${a2*n2*t2}x<sup>${n2-1}</sup>(${a2}x<sup>${n2}</sup>)<sup>${t2-1}</sup>`, `(${(a2 * n2)}x<sup>${(n2 - 1)}</sup>)cos(${a2}x<sup>${n2}</sup>)`, `-(${(a2 * n2)}x<sup>${(n2 - 1)}</sup>)sin(${a2}x<sup>${n2}</sup>)`]
+                exampleExplanation = [`This problem is an example of the power rule. To derive a function using the power rule, multiply the a-value (${a2}) by the n-value (${n2}), and then subtract the n-value by one.`, `This problem is an example of the chain rule. Deriving this is similar to using the power rule. First, use the power rule on the outer function (the part outside of the parentheses), leaving you with ${a2*n2}u<sup>${n-1}</sup>, where u represents the inner function. Then, multiply this by the derivative of the inner function`, `This is a chain rule problem where the outer function is a trigonomic function, in this case sine. The derivative of sine is cosine, so the derivative of the outer function would be cos(u), where u is the inner function. Then, multiply cos(u) by the derivative of u.`, `This is a chain rule problem where the outer function is a trigonomic function, in this case cosine. The derivative of cosine is -sine, so the derivative of the outer function would be -sin(u), where u is the inner function. Then, multiply -sin(u) by the derivative of u to get the final answer.`]
+                questionNumber = Math.floor(Math.random()*derivativeQuestion.length)
                 //Prints question with randomly-generated values (<sup> tag displays an exponent)
-                document.getElementById('ask').innerHTML = `What is the derivative of the function ${derivativeQuestion[QuestionNumber]}? Type any exponents in the form x^n.`
+                document.getElementById('ask').innerHTML = `What is the derivative of the function ${derivativeQuestion[questionNumber]}? Type any exponents in the form x^n.`
+                document.getElementById('example').innerHTML = `The derivative of ${exampleQuestion[questionNumber]} is ${exampleAnswer[questionNumber]}. ${exampleExplanation[questionNumber]} The final answer is ${exampleAnswer[questionNumber]}.`
                 //Prints the answer the user's inputs is being checked against to the console
-                console.log(`The answer for this question is ${derivativeAnswer[QuestionNumber]}`)
+                console.log(`The answer for this question is ${derivativeAnswer[questionNumber]}`)
                 //Clears input space
                 document.getElementById('math_question').reset()
             }
@@ -78,7 +95,7 @@
                 document.getElementById('verify').style.color = "white"
                 document.getElementById('verify').style.fontFamily = "sans-serif"
                 //Checks if inputs are correct
-                if (answer.value == derivativeAnswer[QuestionNumber]) {
+                if (answer.value == derivativeAnswer[questionNumber]) {
                     //Increases number correct by 1
                     correct ++
                     //Increases total questions asked by 1
@@ -93,7 +110,7 @@
                     //Updates score
                     percentCorrect = Math.floor((correct/numAsked)*100)
                     //Tells user that answer is incorrect
-                    document.getElementById('verify').innerHTML = `Incorrect. The correct answer is ${displayAnswer[QuestionNumber]}</sup>. Your answer was ${answer.value}. Your score is ${percentCorrect}%.`
+                    document.getElementById('verify').innerHTML = `Incorrect. The correct answer is ${displayAnswer[questionNumber]}</sup>. Your answer was ${answer.value}. Your score is ${percentCorrect}%.`
                 }
                 //Resets question
                 reset()
