@@ -8,6 +8,7 @@
         <h1>Math Study Page-Derivatives Practice</h1>
     </head>
     <header>
+        <!--Navigation bar-->
         <nav class = "navigation">
             <h2>Other Subjects</h2>
             <a href = "./index.html">Home</a>
@@ -17,12 +18,14 @@
     </header>
     <!--Main page information goes here-->
     <body>
+        <!--Navigation bar-->
         <nav class = "math_navigation">
             <h2>Math Topics:</h2>
             <a href = "./math.html">Math Home</a>
             <a>Derivatives Practice</a>
             <a href = "./integration.html">Integration Practice</a>
         </nav>
+        <!--Everything that pertains to the question is contained within the form-->
         <form class = "study" id = "math_question">
             <!--Adds a label that displays a question-->
             <label class = "question" id = "ask"></label>
@@ -59,7 +62,7 @@
             let percentCorrect = 0
             //Calls reset function to set up question
             reset()
-
+            //Function to set up and reset code
             function reset() {
                 //Chooses random values for question
                 a = Math.floor((Math.random()*5)+1)
