@@ -82,7 +82,7 @@
                 //Prints question with randomly-generated values (<sup> tag displays an exponent)
                 document.getElementById('ask').innerHTML = `What is the derivative of the function ${derivativeQuestion[questionNumber]}? Type any exponents in the form x^n.`
                 //Displays example problem
-                document.getElementById('example').innerHTML = `The derivative of ${exampleQuestion[questionNumber]} is ${exampleAnswer[questionNumber]}. ${exampleExplanation[questionNumber]} The final answer is ${exampleAnswer[questionNumber]}.`
+                document.getElementById('example').innerHTML = `EXAMPLE PROBLEM: The derivative of ${exampleQuestion[questionNumber]} is ${exampleAnswer[questionNumber]}. ${exampleExplanation[questionNumber]} The final answer is ${exampleAnswer[questionNumber]}.`
                 //Prints the answer the user's inputs is being checked against to the console
                 console.log(`The answer for this question is ${derivativeAnswer[questionNumber]}`)
                 //Clears input space
@@ -104,14 +104,14 @@
                     //Updates score
                     percentCorrect = Math.floor((correct/numAsked)*100)
                     //Tells user that answer is correct
-                    document.getElementById('verify').innerHTML = `Correct! Your score is ${percentCorrect}%.`
+                    document.getElementById('verify').innerHTML = `Correct! You have gotten ${correct} out of ${numAsked} correct, and your score is ${percentCorrect}%.`
                 } else {
                     //Increases total questions asked by 1
                     numAsked ++
                     //Updates score
                     percentCorrect = Math.floor((correct/numAsked)*100)
                     //Tells user that answer is incorrect
-                    document.getElementById('verify').innerHTML = `Incorrect. The correct answer is ${displayAnswer[questionNumber]}</sup>. Your answer was ${answer.value}. Your score is ${percentCorrect}%.`
+                    document.getElementById('verify').innerHTML = `Incorrect. The correct answer is ${displayAnswer[questionNumber]}</sup>. Your answer was ${answer.value}. You have gotten ${correct} out of ${numAsked} correct, and your score is ${percentCorrect}%.`
                 }
                 //Resets question
                 reset()

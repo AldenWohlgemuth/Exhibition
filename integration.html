@@ -103,7 +103,7 @@
                 //Prints the answer the user's inputs is being checked against to the console
                 console.log(`The acceptable answers for this question is ${integralAnswer1[questionNumber]}, ${integralAnswer2[questionNumber]}`)
                 //The line below will print an example question of the same type
-                document.getElementById('example').innerHTML = `The antiderivative of &#8747 ${exampleQuestion[questionNumber]} dx is ${exampleAnswer[questionNumber]}. ${exampleExplanation[questionNumber]} Remember to add +c at the end to represent the fact that the solution is a family of functions. The final answer is ${exampleAnswer[questionNumber]}.`
+                document.getElementById('example').innerHTML = `EXAMPLE PROBLEM: The antiderivative of &#8747 ${exampleQuestion[questionNumber]} dx is ${exampleAnswer[questionNumber]}. ${exampleExplanation[questionNumber]} Remember to add +c at the end to represent the fact that the solution is a family of functions. The final answer is ${exampleAnswer[questionNumber]}.`
                 //Clears input space
                 document.getElementById('math_question').reset()
             }
@@ -123,7 +123,7 @@
                     //Updates score
                     percentCorrect = Math.floor((correct/numAsked)*100)
                     //Used to tell user that answer is correct
-                    returnValue = `Correct! Your score is ${percentCorrect}%.`
+                    returnValue = `Correct! You have gotten ${correct} out of ${numAsked} correct, and your score is ${percentCorrect}%.`
                 } else if (answer.value == integralAnswer2[questionNumber]) {
                     //Increases number correct by 1
                     correct ++
@@ -132,14 +132,14 @@
                     //Updates score
                     percentCorrect = Math.floor((correct/numAsked)*100)
                     //Used to tell user that answer is correct
-                    returnValue = `Correct! Your score is ${percentCorrect}%.`
+                    returnValue = `Correct! You have gotten ${correct} out of ${numAsked} correct, and your score is ${percentCorrect}%.`
                 } else {
                     //Increases total questions asked by 1
                     numAsked ++
                     //Updates score
                     percentCorrect = Math.floor((correct/numAsked)*100)
                     //Used to tell user that answer is incorrect
-                    returnValue = `Incorrect. The correct answer is ${displayAnswer[questionNumber]}. Your answer was ${answer.value}. Your score is ${percentCorrect}%.`
+                    returnValue = `Incorrect. The correct answer is ${displayAnswer[questionNumber]}. Your answer was ${answer.value}. You have gotten ${correct} out of ${numAsked} correct, and your score is ${percentCorrect}%.`
                 }
                 //Displays feedback
                 document.getElementById('verify').innerHTML = returnValue

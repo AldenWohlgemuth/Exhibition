@@ -2,7 +2,6 @@ Hello! This website is my exhibition project, which is going to be an interactiv
 Additional TO-DO:
 -Increase area of text background
 -Allow pressing enter to submit answer as well as pressing the submit button
--Show number of questions that have been answered
 -Show previous questions and answers at the bottom of the page
 -Add more things to study
 -Save response and then re-print it so it doesn't reset when enter is pressed
