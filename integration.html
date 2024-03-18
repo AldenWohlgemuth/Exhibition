@@ -78,13 +78,13 @@
             //Function to set up and reset question
             function reset() {
                 //Sets random values for question
-                a = Math.floor((Math.random()*9)+1)
-                n = Math.floor((Math.random()*9)+1)
-                t = Math.floor((Math.random()*9)+1)
+                a = Math.floor((Math.random()*7)+3)
+                n = Math.floor((Math.random()*7)+3)
+                t = Math.floor((Math.random()*7)+3)
                 //Variables for example question
-                a2 = Math.floor((Math.random()*9)+1)
-                n2 = Math.floor((Math.random()*9)+1)
-                t2 = Math.floor((Math.random()*9)+1)
+                a2 = Math.floor((Math.random()*7)+3)
+                n2 = Math.floor((Math.random()*7)+3)
+                t2 = Math.floor((Math.random()*7)+3)
                 //Lists the different integration question types: power rule, natural log, and chain rule
                 integralQuestion = [`${a}x<sup>${n}</sup>`,`<span class="f"><div class="n">${a * n}x<sup>${n - 1}</sup></div><div class="d">${a}x<sup>${n}</sup></div></span>`, `${a*n}x<sup>${n-1}</sup>(${a}x<sup>${n}</sup>)<sup>${t}</sup>`]
                 //Gives the two (1 for natural log) acceptable answers for each question type
