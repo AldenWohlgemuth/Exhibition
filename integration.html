@@ -79,19 +79,28 @@
                 a2 = Math.floor((Math.random()*7)+3)
                 n2 = Math.floor((Math.random()*7)+3)
                 t2 = Math.floor((Math.random()*7)+3)
+                //Chooses which question type to use (the number Math.random() is multiplied by is the number of question types)
+                questionNumber = Math.floor(Math.random()*5)
+                //Makes randomly-generated numbers more managable for antideriving chain rule
+                if (questionNumber == 2) {
+                    a = Math.floor((Math.random()*3)+3)
+                    n = Math.floor((Math.random()*3)+3)
+                    t = Math.floor((Math.random()*3)+3)
+                    a2 = Math.floor((Math.random()*3)+3)
+                    n2 = Math.floor((Math.random()*3)+3)
+                    t2 = Math.floor((Math.random()*3)+3)
+                }
                 //Lists the different integration question types: power rule, natural log, and chain rule
-                integralQuestion = [`${a}x<sup>${n}</sup>`,`<span class="f"><div class="n">${a * n}x<sup>${n - 1}</sup></div><div class="d">${a}x<sup>${n}</sup></div></span>`, `${a*n}x<sup>${n-1}</sup>(${a}x<sup>${n}</sup>)<sup>${t}</sup>`]
+                integralQuestion = [`${a}x<sup>${n}</sup>`,`<span class="f"><div class="n">${a * n}x<sup>${n - 1}</sup></div><div class="d">${a}x<sup>${n}</sup></div></span>`, `${a*n*t}x<sup>${n-1}</sup>(${a}x<sup>${n}</sup>)<sup>${t}</sup>`, `-(${a*n}x<sup>${n-1}</sup>)sin(${a}x<sup>${n}</sup>)`, `(${a*n}x<sup>${n-1}</sup>)cos(${a}x<sup>${n}</sup>)`]
                 //Gives the two (1 for natural log) acceptable answers for each question type
-                integralAnswer1 = [`${a / (n + 1)}x^${(n + 1)}+c`, 'ln(' + a + 'x^' + n + ')+c', `1/${t + 1}(${a}x^${n})^${t+1}+c`]
-                integralAnswer2 = [`${a}/${(n + 1)}x^${(n + 1)}+c`, 'ln(' + a + 'x^' + n + ')+c', `${1/(t + 1)}(${a}x^${n})^${t+1}+c`]
+                integralAnswer1 = [`${a / (n + 1)}x^${(n + 1)}+c`, 'ln(' + a + 'x^' + n + ')+c', `1/${t + 1}(${a}x^${n})^${t+1}+c`, `cos(${a}x^${n})+c`, `sin(${a}x^${n})+c`]
+                integralAnswer2 = [`${a}/${(n + 1)}x^${(n + 1)}+c`, 'ln(' + a + 'x^' + n + ')+c', `${1/(t + 1)}(${a}x^${n})^${t+1}+c`, `cos(${a}x<sup>${n}</sup>)+c`, `sin(${a}x<sup>${n}</sup>)+c`]
                 //Creates answers that will be shown if user gets question incorrect
-                displayAnswer = [`${a}/${(n + 1)}x<sup>${(n + 1)}</sup>+c`, `ln(${a}x<sup>${n}</sup>)+c`, `1/${t + 1}(${a}x<sup>${n}</sup>)<sup>${t+1}</sup>+c`]
+                displayAnswer = [`${a}/${(n + 1)}x<sup>${(n + 1)}</sup>+c`, `ln(${a}x<sup>${n}</sup>)+c`, `1/${t + 1}(${a}x<sup>${n}</sup>)<sup>${t+1}</sup>+c`, `cos(${a}x<sup>${n}</sup>)+c`, `sin(${a}x<sup>${n}</sup>)+c`]
                 //Creates an example question, answer, and explanation that, when this program is finished, will be displayed beneath the question
-                exampleQuestion = [`${a2}x<sup>${n2}</sup>`,`<span class="f"><div class="n">${a2 * n2}x<sup>${n2 - 1}</sup></div><div class="d">${a2}x<sup>${n2}</sup></div></span>`, `${a2*n2}x<sup>${n2-1}</sup>(${a2}x<sup>${n2}</sup>)<sup>${t2}</sup>`]
-                exampleAnswer = [`${a2}/${(n2 + 1)}x<sup>${(n2 + 1)}</sup>+c`, `ln(${a2}x<sup>${n2}</sup>)+c`, `1/${t2 + 1}(${a2}x<sup>${n2}</sup>)<sup>${t2+1}</sup>+c`]
-                exampleExplanation = [`In order to antiderive this problem, you need to use the reverse power rule. First, divide the a-value (${a2}) by 1 plus the n-value (${n2+1}). Then, add 1 to the n-value (${n2}).`, `This problem is in u'/u format, as the degree of the numerator is one less than the degree of the denominator. in order to antiderive it, you would put the denominator (${a2}x<sup>${n2}</sup>) inside the natural log function.`, `This problem requires you to antiderive a chain rule function. To do this, leave the parent function (${a2}x<sup>${n2}</sup>) alone, and then use the reverse power rule (divide the function by 1 plus the n-value, and add one to the n value).`]
-                //Chooses which question type to use
-                questionNumber = Math.floor(Math.random()*integralQuestion.length)
+                exampleQuestion = [`${a2}x<sup>${n2}</sup>`,`<span class="f"><div class="n">${a2 * n2}x<sup>${n2 - 1}</sup></div><div class="d">${a2}x<sup>${n2}</sup></div></span>`, `${a2*n2*t2}x<sup>${n2-1}</sup>(${a2}x<sup>${n2}</sup>)<sup>${t2}</sup>`, `-(${a2*n2}x<sup>${n2-1}</sup>)sin(${a2}x<sup>${n2}</sup>)`, `(${a2*n2}x<sup>${n2-1}</sup>)cos(${a2}x<sup>${n2}</sup>)`]
+                exampleAnswer = [`${a2}/${(n2 + 1)}x<sup>${(n2 + 1)}</sup>+c`, `ln(${a2}x<sup>${n2}</sup>)+c`, `1/${t2 + 1}(${a2}x<sup>${n2}</sup>)<sup>${t2+1}</sup>+c`, `cos(${a2}x<sup>${n2}</sup>)+c`, `sin(${a2}x<sup>${n2}</sup>)+c`]
+                exampleExplanation = [`In order to antiderive this problem, you need to use the reverse power rule. First, divide the a-value (${a2}) by 1 plus the n-value (${n2+1}). Then, add 1 to the n-value (${n2}).`, `This problem is in u'/u format, as the degree of the numerator is one less than the degree of the denominator. in order to antiderive it, you would put the denominator (${a2}x<sup>${n2}</sup>) inside the natural log function.`, `This problem requires you to antiderive a chain rule function. To do this, leave the parent function (${a2}x<sup>${n2}</sup>) alone, and then use the reverse power rule (divide the function by 1 plus the n-value, and add one to the n value). Then, divide the function by the derivative of the inner function.`, `This is a reverse chain rule problem where the outer function is a trigonomic function, in this case sine. Since the dervative of cosine is negative sine, the antiderivative of negative sine is cosine. Then, divide the function by the derivative of the inner function.`, `This is a reverse chain rule problem where the outer function is a trigonomic function, in this case cosine. Since the dervative of sine is cosine, the antiderivative of cosine must be sine. Then, divide the function by the derivative of the inner function.`]
                 //Prints question with randomly-generated values (<sup> tag displays an exponent, and &#8747 displays an integral symbol)
                 document.getElementById('ask').innerHTML = `Evaluate the integral &#8747 ${integralQuestion[questionNumber]} dx. Type exponents as x^n, and natural logs as ln(f(x)).`
                 //Prints the answer the user's inputs is being checked against to the console
