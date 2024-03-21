@@ -5,3 +5,4 @@ Additional TO-DO:
 -Show previous questions and answers at the bottom of the page
 -Add more topics to study
 -Save response and then re-print it so it doesn't reset when enter is pressed
+-Add pictures to homepage that can be used for navigation
