@@ -69,6 +69,17 @@
             let percentCorrect = 0
             //Calls reset function to set up the question
             reset()
+            //Simplifies fractions to check for correct answer
+            function simplify (a,b) {
+                //Divides the numerator and denominator by denominator, then denominator minus one, and so forth
+                for (let i = b; i >= 1; i--) {
+                    //Stops loop when both numerator and denominator have 0 remainder when divided by i (the GCF)
+                    if (a % i == 0 && b % i == 0) {
+                        let simplifiedFraction = `${a / i}/${b / i}`
+                        return simplifiedFraction
+                    }
+                }
+            }
             function example() {
                 if (document.getElementById('example').value == 'Show Example') {
                     //Variables for example question
@@ -113,7 +124,7 @@
                 integralQuestion = [`${a}x<sup>${n}</sup>`,`<span class="f"><div class="n">${a * n}x<sup>${n - 1}</sup></div><div class="d">${a}x<sup>${n}</sup></div></span>`, `${a*n*(t+1)}x<sup>${n-1}</sup>(${a}x<sup>${n}</sup>)<sup>${t}</sup>`, `-(${a*n}x<sup>${n-1}</sup>)sin(${a}x<sup>${n}</sup>)`, `(${a*n}x<sup>${n-1}</sup>)cos(${a}x<sup>${n}</sup>)`]
                 //Gives the acceptable answers for each question type
                 integralAnswer1 = [`${a / (n + 1)}x^${(n + 1)}+c`, 'ln(' + a + 'x^' + n + ')+c', `(${a}x^${n})^${t+1}+c`, `cos(${a}x^${n})+c`, `sin(${a}x^${n})+c`]
-                integralAnswer2 = [`${a}/${(n + 1)}x^${(n + 1)}+c`, 'ln(' + a + 'x^' + n + ')+c', `(${a}x^${n})^${t+1}+c`, `cos(${a}x<sup>${n}</sup>)+c`, `sin(${a}x<sup>${n}</sup>)+c`]
+                integralAnswer2 = [`${simplify(a,n + 1)}x^${(n + 1)}+c`, 'ln(' + a + 'x^' + n + ')+c', `(${a}x^${n})^${t+1}+c`, `cos(${a}x<sup>${n}</sup>)+c`, `sin(${a}x<sup>${n}</sup>)+c`]
                 //Creates answers that will be shown if user gets question incorrect
                 displayAnswer = [`${a}/${(n + 1)}x<sup>${(n + 1)}</sup>+c`, `ln(${a}x<sup>${n}</sup>)+c`, `1/${t + 1}(${a}x<sup>${n}</sup>)<sup>${t+1}</sup>+c`, `cos(${a}x<sup>${n}</sup>)+c`, `sin(${a}x<sup>${n}</sup>)+c`]
                 //Prints question with randomly-generated values (<sup> tag displays an exponent, and &#8747 displays an integral symbol)
