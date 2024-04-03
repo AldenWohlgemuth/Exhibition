@@ -72,6 +72,10 @@ h2 {
     display: block;
     margin: 30px;
 }
+.exampleSpace {
+    text-align: left;
+}
+/*Following three objects are for creating fractions*/
 .f {
     font-size: 16px;
     display: inline-block;
