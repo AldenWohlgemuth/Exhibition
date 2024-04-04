@@ -45,7 +45,7 @@
                 }
             })
             //Declare variables
-            let a 
+            let a
             let n
             let t 
             var integralQuestion
@@ -76,7 +76,11 @@
                     //Stops loop when both numerator and denominator have 0 remainder when divided by i (the GCF)
                     if (a % i == 0 && b % i == 0) {
                         let simplifiedFraction = `${a / i}/${b / i}`
-                        return simplifiedFraction
+                        if (a==b) {
+                            return ''
+                        } else {
+                            return simplifiedFraction
+                        }
                     }
                 }
             }
@@ -93,10 +97,10 @@
                     }
                     //Creates an example question, answer, and explanation that is displayed when the show example button is clicked
                     exampleQuestion = [`${a2}x<sup>${n2}</sup>`,`<span class="f"><div class="n">${a2 * n2}x<sup>${n2 - 1}</sup></div><div class="d">${a2}x<sup>${n2}</sup></div></span>`, `${a2*n2*(t2+1)}x<sup>${n2-1}</sup>(${a2}x<sup>${n2}</sup>)<sup>${t2}</sup>`, `-(${a2*n2}x<sup>${n2-1}</sup>)sin(${a2}x<sup>${n2}</sup>)`, `(${a2*n2}x<sup>${n2-1}</sup>)cos(${a2}x<sup>${n2}</sup>)`]
-                    exampleAnswer = [`${a2}/${(n2 + 1)}x<sup>${(n2 + 1)}</sup>+c`, `ln(${a2}x<sup>${n2}</sup>)+c`, `(${a2}x<sup>${n2}</sup>)<sup>${t2+1}</sup>+c`, `cos(${a2}x<sup>${n2}</sup>)+c`, `sin(${a2}x<sup>${n2}</sup>)+c`]
-                    exampleExplanation = [`In order to antiderive this problem, you need to use the reverse power rule. <br> 1. Divide the a-value (${a2}) by 1 plus the n-value (${n2+1}).<br> 2. Add 1 to the n-value (${n2}).`, `This problem is in u'/u format, as the degree of the numerator is one less than the degree of the denominator. In order to antiderive it, put the denominator (${a2}x<sup>${n2}</sup>) inside the natural log function.`, `This problem requires you to antiderive a chain rule function. <br> 1. Leave the parent function (${a2}x<sup>${n2}</sup>) alone for now, and then use the reverse power rule (divide the function by 1 plus the n-value, and add one to the n value). <br> 2. Divide the function by the derivative of the inner function.`, `This is a reverse chain rule problem where the outer function is a trigonomic function, in this case sine. <br> 1. Since the dervative of cosine is negative sine, the antiderivative of negative sine is cosine. <br> 2. Divide the function by the derivative of the inner function.`, `This is a reverse chain rule problem where the outer function is a trigonomic function, in this case cosine.<br> 1. Since the dervative of sine is cosine, the antiderivative of cosine must be sine. <br> 2. Divide the function by the derivative of the inner function.`]
+                    exampleAnswer = [`${simplify(a2, n2 + 1)}x<sup>${(n2 + 1)}</sup>+c`, `ln(${a2}x<sup>${n2}</sup>)+c`, `(${a2}x<sup>${n2}</sup>)<sup>${t2+1}</sup>+c`, `cos(${a2}x<sup>${n2}</sup>)+c`, `sin(${a2}x<sup>${n2}</sup>)+c`]
+                    exampleExplanation = [`In order to antiderive this problem, you need to use the reverse power rule. <br> 1. Divide the a-value (${a2}) by 1 plus the n-value (${n2+1}). <br> 2. Add 1 to the n-value (${n2}). <br>`, `This problem is in u'/u format, as the degree of the numerator is one less than the degree of the denominator. In order to antiderive it, put the denominator (${a2}x<sup>${n2}</sup>) inside the natural log function. <br>`, `This problem requires you to antiderive a chain rule function. <br> 1. Leave the parent function (${a2}x<sup>${n2}</sup>) alone for now, and then use the reverse power rule (divide the function by 1 plus the n-value, and add one to the n value). <br> 2. Divide the function by the derivative of the inner function. <br>`, `This is a reverse chain rule problem where the outer function is a trigonomic function, in this case sine. <br> 1. Since the dervative of cosine is negative sine, the antiderivative of negative sine is cosine. <br> 2. Divide the function by the derivative of the inner function. <br>`, `This is a reverse chain rule problem where the outer function is a trigonomic function, in this case cosine.<br> 1. Since the dervative of sine is cosine, the antiderivative of cosine must be sine. <br> 2. Divide the function by the derivative of the inner function. <br>`]
                     //Print an example question of the same type
-                    document.getElementById('exampleSpace').innerHTML = `EXAMPLE PROBLEM: The antiderivative of &#8747 ${exampleQuestion[questionNumber]} dx is ${exampleAnswer[questionNumber]}. ${exampleExplanation[questionNumber]} Remember to add +c at the end to represent the fact that the solution is a family of functions. The final answer is ${exampleAnswer[questionNumber]}.`
+                    document.getElementById('exampleSpace').innerHTML = `EXAMPLE PROBLEM: The antiderivative of &#8747 ${exampleQuestion[questionNumber]} dx is ${exampleAnswer[questionNumber]}. ${exampleExplanation[questionNumber]} 3. Add +c at the end to represent the fact that the solution is a family of functions. <br> The final answer is ${exampleAnswer[questionNumber]}.`
                     document.getElementById('example').style.textAlign = "left"
                     //Change show example button to hide example
                     document.getElementById('example').value = 'Hide Example'
