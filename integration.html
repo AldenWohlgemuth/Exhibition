@@ -76,6 +76,7 @@
                     //Stops loop when both numerator and denominator have 0 remainder when divided by i (the GCF)
                     if (a % i == 0 && b % i == 0) {
                         let simplifiedFraction = `${a / i}/${b / i}`
+                        //If fraction does not equal 1, returns it so it can be displayed
                         if (a==b) {
                             return ''
                         } else {
@@ -84,12 +85,14 @@
                     }
                 }
             }
+            //Function to show example question
             function example() {
                 if (document.getElementById('example').value == 'Show Example') {
                     //Variables for example question
                     a2 = Math.floor((Math.random()*7)+3)
                     n2 = Math.floor((Math.random()*7)+3)
                     t2 = Math.floor((Math.random()*7)+3)
+                    //Make more managable numbers for chain rule integration
                     if (questionNumber == 2) {
                         a2 = Math.floor((Math.random()*3)+3)
                         n2 = Math.floor((Math.random()*3)+3)
