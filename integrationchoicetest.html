@@ -1,0 +1,246 @@
+<!DOCTYPE = html>
+<html>
+    <!--Webpage title goes here-->
+    <head>
+        <!--Allows for formatting-->
+        <link href="style.css" rel="stylesheet">
+        <title>Integration Practice</title>
+        <h1>Integration Practice</h1>
+    </head>
+    <header>
+        <!--Navigation bar-->
+        <nav class = "navigation">
+            <h2>Subjects</h2>
+            <a href = "./index.html">Home</a>
+            <a href = "./derivatives.html">Derivatives Practice</a>
+            <a>Integration Practice</a>
+        </nav>
+    </header>
+    <!--Main page information goes here-->
+    <body>
+        <!--Form used to determine what types of questions are shown-->
+        <form class = "study" id = "question_types">
+            <h2>Select the topics you would like to practice.</h2>
+            <!--Creates checkboxes that are used to create questions of the type(s) the user requests-->
+            <input type = "checkbox" name = "questionType" value = "unPowerRule" id = "unPowerRule">
+            <label for = "unPowerRule">Integration with Power Rule</label><br>
+            <input type = "checkbox" name = "questionType" value = "unLnRule" id = "unLnRule">
+            <label for = "unPowerRule">Integration of Natural Logs</label><br>
+            <input type = "checkbox" name = "questionType" value = "unChainRule" id = "unChainRule">
+            <label for = "unChainRule">Integration with Chain Rule</label><br>
+            <input type = "checkbox" name = "questionType" value = "unTrig" id = "unTrig">
+            <label for = "unTrig">Integration of Trigonomic Functions</label><br>
+            <input type = "button" value = "Select Options" onclick = "showQuestion()" class = "button">
+        </form>
+        <!--Everything that pertains to the question is contained within the form-->
+        <form class = "study" id = "math_question">
+            <!--Adds a label that displays a question-->
+            <label class = "question" id = "ask"></label>
+            <!--Creates an input called math that only accepts numbers-->
+            <input id="math" class = "answer">
+            <!--Creates button that calls checkAnswer when clicked-->
+            <input type = "button" value = "Check Answer" onclick = "checkAnswer()" class = "button" id = "check"><span id = "verify"></span>
+        </form>
+        <input type = "button" value = "Show Example" onclick = "example()" class = "button" id = "example"><span id = "verify"></span>
+        <p id = "exampleSpace"></p>
+        <!--Runs javascript function that checks if answer is correct-->
+        <script>
+            //This code is meant to display a response if the response is not null (currently nonfunctional)
+            if (returnValue != null) {
+                document.getElementById('verify').innerHTML = returnValue
+            }
+            //Allows for pressing the answer key to run the checkAnswer function (currently nonfunctional)
+            //Could be getting math input twice
+                var math = document.getElementById('math')
+                math.addEventListener("keypress", function(event) {
+                if (event.key == "Enter") {
+                    event.preventDefault
+                    checkAnswer()
+                }
+            })
+            //Declare variables
+            let a
+            let n
+            let t 
+            var integralQuestion
+            var integralAnswer1
+            var integralAnswer2
+            var displayAnswer
+            var exampleQuestion
+            var exampleAnswer
+            var exampleExplanation
+            //Selects a random question type to ask
+            var questionNumber
+            var returnValue
+            let typeNumber = 0
+            //Formats question and answer
+            document.getElementById('ask').style.color = "white"
+            document.getElementById('ask').style.fontFamily = "sans-serif"
+            document.getElementById('verify').style.display = "block"
+            document.getElementById('verify').style.textAlign = "center"
+            //Declare variables that tell how many answers are correct
+            let correct = 0
+            let numAsked = 0
+            let percentCorrect = 0
+            document.getElementById("math_question").style.display = "none"
+            document.getElementById("question_types").style.display = "block"
+            //Hides selection screen and shows question
+            function showQuestion() {
+                //Increases the number of question types for each option selected-used to determine the length of arrays used
+                if (document.getElementById("unPowerRule").checked == true) {
+                    typeNumber++
+                }
+                if (document.getElementById("unLnRule").checked == true) {
+                    typeNumber++
+                }
+                if (document.getElementById("unChainRule").checked == true) {
+                    typeNumber++
+                }
+                if (document.getElementById("unTrig").checked == true) {
+                    typeNumber = typeNumber + 2
+                }
+                reset()
+                document.getElementById("question_types").style.display = "none"
+                document.getElementById("math_question").style.display = "block"
+            }
+            //Simplifies fractions to check for correct answer
+            function simplify (a,b) {
+                //Divides the numerator and denominator by denominator, then denominator minus one, and so forth
+                for (let i = b; i >= 1; i--) {
+                    //Stops loop when both numerator and denominator have 0 remainder when divided by i (the GCF)
+                    if (a % i == 0 && b % i == 0) {
+                        let simplifiedFraction = `${a / i}/${b / i}`
+                        //If fraction does not equal 1, returns it so it can be displayed
+                        if (a==b) {
+                            return ''
+                        } else {
+                            return simplifiedFraction
+                        }
+                    }
+                }
+            }
+            //Function to show example question
+            function example() {
+                //Checks if example is shown
+                if (document.getElementById('example').value == 'Show Example') {
+                    //Variables for example question
+                    a2 = Math.floor((Math.random()*7)+3)
+                    n2 = Math.floor((Math.random()*7)+3)
+                    t2 = Math.floor((Math.random()*7)+3)
+                    //Make more managable numbers for chain rule integration
+                    if (questionNumber == 2) {
+                        a2 = Math.floor((Math.random()*3)+3)
+                        n2 = Math.floor((Math.random()*3)+3)
+                        t2 = Math.floor((Math.random()*3)+3)
+                    }
+                    //Creates an example question, answer, and explanation that is displayed when the show example button is clicked
+                    exampleQuestion = [`${a2}x<sup>${n2}</sup>`,`<span class="f"><div class="n">${a2 * n2}x<sup>${n2 - 1}</sup></div><div class="d">${a2}x<sup>${n2}</sup></div></span>`, `${a2*n2*(t2+1)}x<sup>${n2-1}</sup>(${a2}x<sup>${n2}</sup>)<sup>${t2}</sup>`, `-(${a2*n2}x<sup>${n2-1}</sup>)sin(${a2}x<sup>${n2}</sup>)`, `(${a2*n2}x<sup>${n2-1}</sup>)cos(${a2}x<sup>${n2}</sup>)`]
+                    exampleAnswer = [`${simplify(a2, n2 + 1)}x<sup>${(n2 + 1)}</sup>+c`, `ln(${a2}x<sup>${n2}</sup>)+c`, `(${a2}x<sup>${n2}</sup>)<sup>${t2+1}</sup>+c`, `cos(${a2}x<sup>${n2}</sup>)+c`, `sin(${a2}x<sup>${n2}</sup>)+c`]
+                    exampleExplanation = [`In order to antiderive this problem, you need to use the reverse power rule. <br> 1. Divide the a-value (${a2}) by 1 plus the n-value (${n2+1}). <br> 2. Add 1 to the n-value (${n2}). <br>`, `This problem is in u'/u format, as the degree of the numerator is one less than the degree of the denominator. In order to antiderive it, put the denominator (${a2}x<sup>${n2}</sup>) inside the natural log function. <br>`, `This problem requires you to antiderive a chain rule function. <br> 1. Leave the parent function (${a2}x<sup>${n2}</sup>) alone for now, and then use the reverse power rule (divide the function by 1 plus the n-value, and add one to the n value). <br> 2. Divide the function by the derivative of the inner function. <br>`, `This is a reverse chain rule problem where the outer function is a trigonomic function, in this case sine. <br> 1. Since the dervative of cosine is negative sine, the antiderivative of negative sine is cosine. <br> 2. Divide the function by the derivative of the inner function. <br>`, `This is a reverse chain rule problem where the outer function is a trigonomic function, in this case cosine.<br> 1. Since the dervative of sine is cosine, the antiderivative of cosine must be sine. <br> 2. Divide the function by the derivative of the inner function. <br>`]
+                    //Print an example question of the same type
+                    document.getElementById('exampleSpace').innerHTML = `EXAMPLE PROBLEM: The antiderivative of &#8747 ${exampleQuestion[questionNumber]} dx is ${exampleAnswer[questionNumber]}. ${exampleExplanation[questionNumber]} 3. Add +c at the end to represent the fact that the solution is a family of functions. <br> The final answer is ${exampleAnswer[questionNumber]}.`
+                    document.getElementById('example').style.textAlign = "left"
+                    //Change show example button to hide example
+                    document.getElementById('example').value = 'Hide Example'
+                } else {
+                    //Clear example
+                    document.getElementById('exampleSpace').innerHTML = ''
+                    //Change hide example button to show example
+                    document.getElementById('example').value = 'Show Example'
+                }
+            }
+            //Function to set up and reset question
+            function reset() {
+                //Sets random values for question
+                a = Math.floor((Math.random()*7)+3)
+                n = Math.floor((Math.random()*7)+3)
+                t = Math.floor((Math.random()*7)+3)
+                //Chooses which question type to use (the number Math.random() is multiplied by is the number of question types)
+                questionNumber = Math.floor(Math.random()*typeNumber)
+                //Makes randomly-generated numbers more managable for antideriving chain rule-currently nonfunctional
+                if (questionNumber == 2) {
+                    a = Math.floor((Math.random()*3)+3)
+                    n = Math.floor((Math.random()*3)+3)
+                    t = Math.floor((Math.random()*3)+3)
+                }
+                //Lists the different integration question types: power rule, natural log, and chain rule
+                integralQuestion = []
+                //Gives the acceptable answers for each question type
+                integralAnswer1 = []
+                integralAnswer2 = []
+                //Creates answers that will be shown if user gets question incorrect
+                displayAnswer = []
+                //Adds different question types to the array based on what question types were selected
+                if (document.getElementById("unPowerRule").checked == true) {
+                    integralQuestion.splice(0, 1, `${a}x<sup>${n}</sup>`)
+                    integralAnswer1.splice(0, 1, `${a / (n + 1)}x^${(n + 1)}+c`)
+                    integralAnswer2.splice(0, 1, `${simplify(a,n + 1)}x^${(n + 1)}+c`)
+                    displayAnswer.splice(0, 1, `${a}/${(n + 1)}x<sup>${(n + 1)}</sup>+c`)
+                }
+                if (document.getElementById("unLnRule").checked == true) {
+                    integralQuestion.splice(1, 1, `<span class="f"><div class="n">${a * n}x<sup>${n - 1}</sup></div><div class="d">${a}x<sup>${n}</sup></div></span>`)
+                    integralAnswer1.splice(1, 1, 'ln(' + a + 'x^' + n + ')+c')
+                    integralAnswer2.splice(0, 1, 'ln(' + a + 'x^' + n + ')+c')
+                    displayAnswer.splice(1, 1, `ln(${a}x<sup>${n}</sup>)+c`)
+                }
+                if (document.getElementById("unChainRule").checked == true) {
+                    integralQuestion.splice(2, 1, `${a*n*(t+1)}x<sup>${n-1}</sup>(${a}x<sup>${n}</sup>)<sup>${t}</sup>`)
+                    integralAnswer1.splice(2, 1, `(${a}x^${n})^${t+1}+c`)
+                    integralAnswer2.splice(0, 1, `(${a}x^${n})^${t+1}+c`)
+                    displayAnswer.splice(2, 1, `1/${t + 1}(${a}x<sup>${n}</sup>)<sup>${t+1}</sup>+c`)
+                }
+                if (document.getElementById("unTrig").checked == true) {
+                    integralQuestion.splice(3, 2, `-(${a*n}x<sup>${n-1}</sup>)sin(${a}x<sup>${n}</sup>)`, `(${a*n}x<sup>${n-1}</sup>)cos(${a}x<sup>${n}</sup>)`)
+                    integralAnswer1.splice(3, 2, `cos(${a}x^${n})+c`, `sin(${a}x^${n})+c`)
+                    integralAnswer2.splice(0, 1, `cos(${a}x<sup>${n}</sup>)+c`, `sin(${a}x<sup>${n}</sup>)+c`)
+                    displayAnswer.splice(3, 2, `cos(${a}x<sup>${n}</sup>)+c`, `sin(${a}x<sup>${n}</sup>)+c`)
+                }
+                //Prints question with randomly-generated values (<sup> tag displays an exponent, and &#8747 displays an integral symbol)
+                document.getElementById('ask').innerHTML = `Evaluate the integral &#8747 ${integralQuestion[questionNumber]} dx. Type exponents as x^n, and natural logs as ln(f(x)).`
+                //Prints the answer the user's inputs is being checked against to the console
+                console.log(`The acceptable answers for this question is ${integralAnswer1[questionNumber]}, ${integralAnswer2[questionNumber]}`)
+                //Clears input space
+                document.getElementById('math_question').reset()
+            }
+            //Function that checks user input
+            function checkAnswer() {
+                //Gets the user inputs
+                var answer = document.getElementById("math")
+                //Formatting (uses same elements as CSS)
+                document.getElementById('verify').style.color = "white"
+                document.getElementById('verify').style.fontFamily = "sans-serif"
+                //Checks if inputs are correct
+                if (answer.value == integralAnswer1[questionNumber]) {
+                    //Increases number correct by 1
+                    correct ++
+                    //Increases total questions asked by 1
+                    numAsked ++
+                    //Updates score
+                    percentCorrect = Math.floor((correct/numAsked)*100)
+                    //Used to tell user that answer is correct
+                    returnValue = `Correct! You have gotten ${correct} out of ${numAsked} correct, and your score is ${percentCorrect}%.`
+                } else if (answer.value == integralAnswer2[questionNumber]) {
+                    //Increases number correct by 1
+                    correct ++
+                    //Increases total questions asked by 1
+                    numAsked ++
+                    //Updates score
+                    percentCorrect = Math.floor((correct/numAsked)*100)
+                    //Used to tell user that answer is correct
+                    returnValue = `Correct! You have gotten ${correct} out of ${numAsked} correct, and your score is ${percentCorrect}%.`
+                } else {
+                    //Increases total questions asked by 1
+                    numAsked ++
+                    //Updates score
+                    percentCorrect = Math.floor((correct/numAsked)*100)
+                    //Used to tell user that answer is incorrect
+                    returnValue = `Incorrect. The correct answer is ${displayAnswer[questionNumber]}. Your answer was ${answer.value}. You have gotten ${correct} out of ${numAsked} correct, and your score is ${percentCorrect}%.`
+                }
+                //Displays feedback
+                document.getElementById('verify').innerHTML = returnValue
+                //Resets question
+                reset()
+            }
+        </script>
+    </body>
+</html>

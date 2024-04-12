@@ -18,12 +18,24 @@
     </header>
     <!--Main page information goes here-->
     <body>
+        <!--Form used to determine what types of questions are shown-->
+        <form class = "study" id = "question_types">
+            <h2>Select the topics you would like to practice.</h2>
+            <!--Creates checkboxes that are used to create questions of the type(s) the user requests-->
+            <input type = "checkbox" name = "questionType" value = "powerRule" id = "powerRule">
+            <label for = "powerRule">Power Rule</label><br>
+            <input type = "checkbox" name = "questionType" value = "chainRule" id = "chainRule">
+            <label for = "chainRule">Chain Rule</label><br>
+            <input type = "checkbox" name = "questionType" value = "trig" id = "trig">
+            <label for = "trig">Trigonomic Functions</label><br>
+            <input type = "button" value = "Select Options" onclick = "showQuestion()" class = "button">
+        </form>
         <!--Everything that pertains to the question is contained within the form-->
         <form class = "study" id = "math_question">
             <!--Adds a label that displays a question-->
             <label class = "question" id = "ask"></label>
             <!--Creates an input called math that only accepts numbers-->
-            <input id="math" class = "answer">
+            <input id = "math" class = "answer">
             <!--Creates button that calls checkAnswer when clicked-->
             <input type = "button" value = "Check Answer" onclick = "checkAnswer()" class = "button"><span id = "verify"></span>
         </form>
@@ -44,6 +56,7 @@
             var exampleQuestion
             var exampleAnswer
             var exampleExplanation
+            let typeNumber = 0
             //Formats question and answer
             document.getElementById('ask').style.color = "white"
             document.getElementById('ask').style.fontFamily = "sans-serif"
@@ -53,8 +66,22 @@
             let correct = 0
             let numAsked = 0
             let percentCorrect = 0
-            //Calls reset function to set up question
-            reset()
+            //Hides selection screen and shows question
+            function showQuestion() {
+                //Increases the number of question types for each option selected-used to determine the length of arrays used
+                if (document.getElementById("powerRule").checked == true) {
+                    typeNumber++
+                }
+                if (document.getElementById("chainRule").checked == true) {
+                    typeNumber++
+                }
+                if (document.getElementById("trig").checked == true) {
+                    typeNumber = typeNumber + 2
+                }
+                reset()
+                document.getElementById("question_types").style.display = "none"
+                document.getElementById("math_question").style.display = "block"
+            }
             //Function used to generate example question
             function example() {
                 //Checks if example is shown
@@ -91,18 +118,34 @@
                 n = Math.floor((Math.random()*7)+3)
                 t = Math.floor((Math.random()*7)+3)
                 //Chooses which question type to use (the number Math.random() is multiplied by is the number of question types)
-                questionNumber = Math.floor(Math.random()*4)
-                //Makes randomly-generated numbers more managable for deriving chain rule
+                questionNumber = Math.floor(Math.random()*typeNumber)
+                //Makes randomly-generated numbers more managable for deriving chain rule-currently nonfunctional
                 if (questionNumber == 1) {
                     a = Math.floor((Math.random()*3)+3)
                     n = Math.floor((Math.random()*3)+3)
                     t = Math.floor((Math.random()*3)+3)
                 }
-                //List of question types
-                derivativeQuestion = [`${a}x<sup>${n}</sup>`, `(${a}x<sup>${n}</sup>)<sup>${t}</sup>`, `sin(${a}x<sup>${n}</sup>)`, `cos(${a}x<sup>${n}</sup>)`]
-                //List of question answers
-                derivativeAnswer = [(a * n) + 'x^' + (n - 1), `${a*n*t}x^${n-1}(${a}x^${n})^${t-1}`, `(${(a * n)}x^${(n - 1)})cos(${a}x^${n})`, `-(${(a * n)}x^${(n - 1)})sin(${a}x^${n})`]
-                displayAnswer = [`${(a * n)}x<sup>${(n - 1)}</sup>`, `${a*n*t}x<sup>${n-1}</sup>(${a}x<sup>${n}</sup>)<sup>${t-1}</sup>`, `(${(a * n)}x<sup>${(n - 1)}</sup>)cos(${a}x<sup>${n}</sup>)`, `-(${(a * n)}x<sup>${(n - 1)}</sup>)sin(${a}x<sup>${n}</sup>)`]
+                //Creates empty array for question types
+                derivativeQuestion = []
+                //Creates empty array for answer that is accepted, and one that is displayed if the answer is incorrect
+                derivativeAnswer = []
+                displayAnswer = []
+                //Adds different question types to the array based on what question types were selected
+                if (document.getElementById("powerRule").checked == true) {
+                    derivativeQuestion.splice(0, 1, `${a}x<sup>${n}</sup>`)
+                    derivativeAnswer.splice(0, 1, (a * n) + 'x^' + (n - 1))
+                    displayAnswer.splice(0, 1, `${(a * n)}x<sup>${(n - 1)}</sup>`)
+                }
+                if (document.getElementById("chainRule").checked == true) {
+                    derivativeQuestion.splice(1, 1, `(${a}x<sup>${n}</sup>)<sup>${t}</sup>`)
+                    derivativeAnswer.splice(1, 1, `${a*n*t}x^${n-1}(${a}x^${n})^${t-1}`)
+                    displayAnswer.splice(1, 1, `${a*n*t}x<sup>${n-1}</sup>(${a}x<sup>${n}</sup>)<sup>${t-1}</sup>`)
+                }
+                if (document.getElementById("trig").checked == true) {
+                    derivativeQuestion.splice(2, 2, `sin(${a}x<sup>${n}</sup>)`, `cos(${a}x<sup>${n}</sup>)`)
+                    derivativeAnswer.splice(2, 2, `(${(a * n)}x^${(n - 1)})cos(${a}x^${n})`, `-(${(a * n)}x^${(n - 1)})sin(${a}x^${n})`)
+                    displayAnswer.splice(2, 2, `(${(a * n)}x<sup>${(n - 1)}</sup>)cos(${a}x<sup>${n}</sup>)`, `-(${(a * n)}x<sup>${(n - 1)}</sup>)sin(${a}x<sup>${n}</sup>)`)
+                }
                 //Prints question with randomly-generated values (<sup> tag displays an exponent)
                 document.getElementById('ask').innerHTML = `What is the derivative of the function ${derivativeQuestion[questionNumber]}? Type any exponents in the form x^n.`
                 //Displays example problem
