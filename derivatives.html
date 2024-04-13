@@ -66,6 +66,9 @@
             let correct = 0
             let numAsked = 0
             let percentCorrect = 0
+            //Show question types and hide actual question
+            document.getElementById("math_question").style.display = "none"
+            document.getElementById("question_types").style.display = "block"
             //Hides selection screen and shows question
             function showQuestion() {
                 //Increases the number of question types for each option selected-used to determine the length of arrays used
