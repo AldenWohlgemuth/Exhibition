@@ -124,9 +124,6 @@
                     }
                 }
             }
-            function chainRule(n) {
-                return Math.floor((Math.random()*3)+3)
-            }
             //Function to show example question
             function example() {
                 //Checks if example is shown
@@ -135,12 +132,6 @@
                     a2 = Math.floor((Math.random()*7)+3)
                     n2 = Math.floor((Math.random()*7)+3)
                     t2 = Math.floor((Math.random()*7)+3)
-                    //Make more managable numbers for chain rule integration
-                    if (questionNumber == 2) {
-                        a2 = Math.floor((Math.random()*3)+3)
-                        n2 = Math.floor((Math.random()*3)+3)
-                        t2 = Math.floor((Math.random()*3)+3)
-                    }
                     //Creates an example question, answer, and explanation that is displayed when the show example button is clicked
                     exampleQuestion = []
                     exampleAnswer = []

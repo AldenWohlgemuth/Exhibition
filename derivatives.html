@@ -50,6 +50,9 @@
             let a2
             let n2
             let t2
+            let a3
+            let n3
+            let t3
             var derivativeQuestion
             var derivativeAnswer
             let questionNumber
@@ -95,12 +98,6 @@
                     a2 = Math.floor((Math.random()*7)+3)
                     n2 = Math.floor((Math.random()*7)+3)
                     t2 = Math.floor((Math.random()*7)+3)
-                    //Makes randomly-generated numbers more managable for deriving chain rule
-                    if (questionNumber == 1) {
-                        a2 = Math.floor((Math.random()*3)+3)
-                        n2 = Math.floor((Math.random()*3)+3)
-                        t2 = Math.floor((Math.random()*3)+3)
-                    }
                     //Creates an example question, answer, and explanation that, when this program is finished, will be displayed beneath the question
                     exampleQuestion = []
                     exampleAnswer = []
@@ -141,11 +138,9 @@
                 //Chooses which question type to use (the number Math.random() is multiplied by is the number of question types)
                 questionNumber = Math.floor(Math.random()*typeNumber)
                 //Makes randomly-generated numbers more managable for deriving chain rule-currently nonfunctional
-                if (questionNumber == 1) {
-                    a = Math.floor((Math.random()*3)+3)
-                    n = Math.floor((Math.random()*3)+3)
-                    t = Math.floor((Math.random()*3)+3)
-                }
+                a3 = Math.floor((Math.random()*3)+3)
+                n3 = Math.floor((Math.random()*3)+3)
+                t3 = Math.floor((Math.random()*3)+3)
                 //Creates empty array for question types
                 derivativeQuestion = []
                 //Creates empty array for answer that is accepted, and one that is displayed if the answer is incorrect
@@ -158,9 +153,9 @@
                     displayAnswer.splice(0, 1, `${(a * n)}x<sup>${(n - 1)}</sup>`)
                 }
                 if (document.getElementById("chainRule").checked == true) {
-                    derivativeQuestion.splice(1, 1, `(${a}x<sup>${n}</sup>)<sup>${t}</sup>`)
-                    derivativeAnswer.splice(1, 1, `${a*n*t}x^${n-1}(${a}x^${n})^${t-1}`)
-                    displayAnswer.splice(1, 1, `${a*n*t}x<sup>${n-1}</sup>(${a}x<sup>${n}</sup>)<sup>${t-1}</sup>`)
+                    derivativeQuestion.splice(1, 1, `(${a3}x<sup>${n3}</sup>)<sup>${t3}</sup>`)
+                    derivativeAnswer.splice(1, 1, `${a3*n3*t3}x^${n3-1}(${a3}x^${n3})^${t3-1}`)
+                    displayAnswer.splice(1, 1, `${a3*n3*t3}x<sup>${n3-1}</sup>(${a3}x<sup>${n3}</sup>)<sup>${t3-1}</sup>`)
                 }
                 if (document.getElementById("trig").checked == true) {
                     derivativeQuestion.splice(2, 2, `sin(${a}x<sup>${n}</sup>)`, `cos(${a}x<sup>${n}</sup>)`)
