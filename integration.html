@@ -103,6 +103,9 @@
                 if (document.getElementById("unTrig").checked == true) {
                     typeNumber = typeNumber + 2
                 }
+                if (typeNumber == 0){
+                    return;
+                }
                 reset()
                 document.getElementById("question_types").style.display = "none"
                 document.getElementById("math_question").style.display = "block"

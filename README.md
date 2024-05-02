@@ -7,3 +7,4 @@ Additional TO-DO:
 -Save response and then re-print it so it doesn't reset when enter is pressed
 -Add pictures to homepage that can be used for navigation
 -Fix code for making chain rule numbers more managable
+-Cite images used
