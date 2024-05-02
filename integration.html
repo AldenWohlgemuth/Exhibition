@@ -20,7 +20,7 @@
     <body>
         <!--Form used to determine what types of questions are shown-->
         <form class = "study" id = "question_types">
-            <h2>Select the topics you would like to practice.</h2>
+            <h2>Select the topics you would like to practice:</h2>
             <!--Creates checkboxes that are used to create questions of the type(s) the user requests-->
             <input type = "checkbox" name = "questionType" value = "unPowerRule" id = "unPowerRule">
             <label for = "unPowerRule">Integration with Power Rule</label><br>
@@ -78,7 +78,7 @@
             let typeNumber = 0
             //Formats question and answer
             document.getElementById('ask').style.color = "white"
-            document.getElementById('ask').style.fontFamily = "sans-serif"
+            document.getElementById('ask').style.fontFamily = "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"
             document.getElementById('verify').style.display = "block"
             document.getElementById('verify').style.textAlign = "center"
             //Declare variables that tell how many answers are correct
@@ -158,6 +158,8 @@
                         exampleExplanation.splice(3, 2, `This is a reverse chain rule problem where the outer function is a trigonomic function, in this case sine. <br> 1. Since the dervative of cosine is negative sine, the antiderivative of negative sine is cosine. <br> 2. Divide the function by the derivative of the inner function. <br>`, `This is a reverse chain rule problem where the outer function is a trigonomic function, in this case cosine.<br> 1. Since the dervative of sine is cosine, the antiderivative of cosine must be sine. <br> 2. Divide the function by the derivative of the inner function. <br>`)
                     }
                     //Print an example question of the same type
+                    document.getElementById("exampleSpace").style.display = "block"
+                    document.getElementById("exampleSpace").style.padding = "10px"
                     document.getElementById('exampleSpace').innerHTML = `EXAMPLE PROBLEM: The antiderivative of &#8747 ${exampleQuestion[questionNumber]} dx is ${exampleAnswer[questionNumber]}. ${exampleExplanation[questionNumber]} 3. Add +c at the end to represent the fact that the solution is a family of functions. <br> The final answer is ${exampleAnswer[questionNumber]}.`
                     document.getElementById('example').style.textAlign = "left"
                     //Change show example button to hide example
@@ -165,6 +167,8 @@
                 } else {
                     //Clear example
                     document.getElementById('exampleSpace').innerHTML = ''
+                    document.getElementById("exampleSpace").style.display = "none"
+                    document.getElementById("exampleSpace").style.padding = "0px"
                     //Change hide example button to show example
                     document.getElementById('example').value = 'Show Example'
                 }
@@ -226,7 +230,7 @@
                 var answer = document.getElementById("math")
                 //Formatting (uses same elements as CSS)
                 document.getElementById('verify').style.color = "white"
-                document.getElementById('verify').style.fontFamily = "sans-serif"
+                document.getElementById('verify').style.fontFamily = "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"
                 //Checks if inputs are correct
                 if (answer.value == integralAnswer1[questionNumber]) {
                     //Increases number correct by 1
