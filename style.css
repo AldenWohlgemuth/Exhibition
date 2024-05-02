@@ -7,6 +7,9 @@ label {
 }
 img {
     background-color: white;
+    margin: auto;
+}
+.images {
     display: block;
     margin: auto;
 }
