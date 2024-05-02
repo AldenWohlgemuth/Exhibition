@@ -6,7 +6,7 @@ body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     text-align: center;
     font-size: 18px;
-    margin: 30px 100px;
+    margin: 30px 200px;
     background-color: cornflowerblue;
     border-radius: 5px;
     color: whitesmoke;
@@ -26,7 +26,7 @@ p {
     text-align: center;
     background-color: cornflowerblue;
     border-radius: 5px;
-    margin: 30px 100px;
+    margin: 30px 200px;
     padding: 20px;
 }
 #introduction{
@@ -50,7 +50,7 @@ h2 {
     text-align: center;
     display: block;
     font-size: 24px;
-    margin: 30px 100px;
+    margin: 30px 200px;
 }
 .answer {
     color: black;
@@ -78,7 +78,7 @@ h2 {
     font-size: 18px;
     border-radius: 5px;
     display: block;
-    margin: 30px 100px;
+    margin: 30px 200px;
     padding: 5px;
 }
 #exampleSpace {
