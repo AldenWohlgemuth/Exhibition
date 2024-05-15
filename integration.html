@@ -108,7 +108,9 @@
                     return;
                 }
                 reset()
+                //Hide question type select screen
                 document.getElementById("question_types").style.display = "none"
+                //Display question and example
                 document.getElementById("math_question").style.display = "block"
                 document.getElementById("example").style.display = "block"
             }
@@ -225,6 +227,12 @@
                 document.getElementById('ask').innerHTML = `Evaluate the integral &#8747 ${integralQuestion[questionNumber]} dx. Type exponents as x^n, and natural logs as ln(f(x)).`
                 //Prints the answer the user's inputs is being checked against to the console
                 console.log(`The acceptable answers for this question is ${integralAnswer1[questionNumber]}, ${integralAnswer2[questionNumber]}`)
+                //Clear example from previous problem
+                document.getElementById('exampleSpace').innerHTML = ''
+                document.getElementById("exampleSpace").style.display = "none"
+                document.getElementById("exampleSpace").style.padding = "0px"
+                //Change text on button from hide example to show example
+                document.getElementById('example').value = 'Show Example'
                 //Clears input space
                 document.getElementById('math_question').reset()
             }
