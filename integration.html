@@ -158,6 +158,7 @@
                         exampleAnswer.splice(2, 1, `(${a2}x<sup>${n2}</sup>)<sup>${t2+1}</sup>+c`)
                         exampleExplanation.splice(2, 1, `This problem requires you to antiderive a chain rule function. <br> 1. Leave the parent function (${a2}x<sup>${n2}</sup>) alone for now, and then use the reverse power rule (divide the function by 1 plus the n-value, and add one to the n value). <br> 2. Divide the function by the derivative of the inner function. <br>`)
                     }
+                    //Unlike the others, this if loop adds to question types to the arrays: sine and cosine
                     if (document.getElementById("unTrig").checked == true) {
                         exampleQuestion.splice(3, 2, `-(${a2*n2}x<sup>${n2-1}</sup>)sin(${a2}x<sup>${n2}</sup>)`, `(${a2*n2}x<sup>${n2-1}</sup>)cos(${a2}x<sup>${n2}</sup>)`)
                         exampleAnswer.splice(3, 2, `cos(${a2}x<sup>${n2}</sup>)+c`, `sin(${a2}x<sup>${n2}</sup>)+c`)
@@ -217,6 +218,7 @@
                     integralAnswer2.splice(2, 1, `(${a3}x^${n3})^${t3+1}+c`)
                     displayAnswer.splice(2, 1, `1/${t3 + 1}(${a3}x<sup>${n3}</sup>)<sup>${t3+1}</sup>+c`)
                 }
+                //Unlike the others, this if loop adds to question types to the arrays: sine and cosine
                 if (document.getElementById("unTrig").checked == true) {
                     integralQuestion.splice(3, 2, `-(${a*n}x<sup>${n-1}</sup>)sin(${a}x<sup>${n}</sup>)`, `(${a*n}x<sup>${n-1}</sup>)cos(${a}x<sup>${n}</sup>)`)
                     integralAnswer1.splice(3, 2, `cos(${a}x^${n})+c`, `sin(${a}x^${n})+c`)

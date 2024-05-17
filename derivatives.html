@@ -119,6 +119,7 @@
                         exampleAnswer.splice(1, 1, `${a2*n2*t2}x<sup>${n2-1}</sup>(${a2}x<sup>${n2}</sup>)<sup>${t2-1}</sup>`)
                         exampleExplanation.splice(1, 1, `This problem is an example of the chain rule. Deriving this is similar to using the power rule. <br> 1. Use the power rule on the outer function (the part outside of the parentheses), leaving you with ${a2*n2}u<sup>${n-1}</sup>, where u represents the inner function. <br> 2. Multiply this by the derivative of the inner function. <br>`)
                     }
+                    //Unlike the others, this if loop adds to question types to the arrays: sine and cosine
                     if (document.getElementById("trig").checked == true) {
                         exampleQuestion.splice(2, 2, `sin(${a2}x<sup>${n2}</sup>)`, `cos(${a2}x<sup>${n2}</sup>)`)
                         exampleAnswer.splice(2, 2, `(${(a2 * n2)}x<sup>${(n2 - 1)}</sup>)cos(${a2}x<sup>${n2}</sup>)`, `-(${(a2 * n2)}x<sup>${(n2 - 1)}</sup>)sin(${a2}x<sup>${n2}</sup>)`)
@@ -167,6 +168,7 @@
                     derivativeAnswer.splice(1, 1, `${a3*n3*t3}x^${n3-1}(${a3}x^${n3})^${t3-1}`)
                     displayAnswer.splice(1, 1, `${a3*n3*t3}x<sup>${n3-1}</sup>(${a3}x<sup>${n3}</sup>)<sup>${t3-1}</sup>`)
                 }
+                //Unlike the others, this if loop adds to question types to the arrays: sine and cosine
                 if (document.getElementById("trig").checked == true) {
                     derivativeQuestion.splice(2, 2, `sin(${a}x<sup>${n}</sup>)`, `cos(${a}x<sup>${n}</sup>)`)
                     derivativeAnswer.splice(2, 2, `(${(a * n)}x^${(n - 1)})cos(${a}x^${n})`, `-(${(a * n)}x^${(n - 1)})sin(${a}x^${n})`)
