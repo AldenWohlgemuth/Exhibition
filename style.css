@@ -10,6 +10,10 @@ img {
     display: block;
     margin: auto;
 }
+.questionType {
+    height: 2%;
+    width: 2%
+}
 .images {
     display: block;
     margin: auto;
