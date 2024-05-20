@@ -12,7 +12,9 @@ img {
 }
 .questionType {
     height: 2%;
-    width: 2%
+    width: 2%;
+    min-height: 15px;
+    min-width: 15px;
 }
 .images {
     display: block;
