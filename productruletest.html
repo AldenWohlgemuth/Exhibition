@@ -1,0 +1,238 @@
+<!DOCTYPE = html>
+<html>
+    <!--Webpage title goes here-->
+    <head>
+        <!--Allows for formatting-->
+        <link href="style.css" rel="stylesheet">
+        <title>Derivatives Practice</title>
+        <h1>Derivatives Practice</h1>
+    </head>
+    <header>
+        <!--Navigation bar-->
+        <nav class = "navigation">
+            <h2>Subjects</h2>
+            <a href = "./index.html">Home</a>
+            <a>Derivatives Practice</a>
+            <a href = "./integration.html">Integration Practice</a>
+        </nav>
+    </header>
+    <!--Main page information goes here-->
+    <body>
+        <!--Form used to determine what types of questions are shown-->
+        <form class = "study" id = "question_types">
+            <h2>Select the topics you would like to practice:</h2>
+            <!--Creates checkboxes that are used to create questions of the type(s) the user requests-->
+            <input type = "checkbox" name = "questionType" class = "questionType" value = "powerRule" id = "powerRule">
+            <label for = "powerRule">Power Rule</label><br>
+            <input type = "checkbox" name = "questionType" class = "questionType" value = "productRule" id = "productRule">
+            <label for = "productRule">Product Rule</label><br>
+            <input type = "checkbox" name = "questionType" class = "questionType" value = "chainRule" id = "chainRule">
+            <label for = "chainRule">Chain Rule</label><br>
+            <input type = "checkbox" name = "questionType" class = "questionType" value = "trig" id = "trig">
+            <label for = "trig">Trigonomic Functions</label><br>
+            <input type = "button" value = "Select Options" onclick = "showQuestion()" class = "button">
+        </form>
+        <!--Everything that pertains to the question is contained within the form-->
+        <form class = "study" id = "math_question">
+            <!--Adds a label that displays a question-->
+            <label class = "question" id = "ask"></label>
+            <!--Creates an input called math for the user to submit their answer-->
+            <input id = "math" class = "answer">
+            <!--Creates button that calls checkAnswer when clicked-->
+            <input type = "button" value = "Check Answer" onclick = "checkAnswer()" class = "button"><span id = "verify"></span>
+        </form>
+        <input type = "button" value = "Show Example" onclick = "example()" class = "button" id = "example"><span id = "verify"></span>
+        <p id = 'exampleSpace'></p>
+        <!--Runs javascript function that checks if answer is correct-->
+        <script>
+            //Declare variables for question
+            let a
+            let n
+            let t
+            let a2
+            let n2
+            let t2
+            let a3
+            let n3
+            let t3
+            var derivativeQuestion
+            var derivativeAnswer
+            let questionNumber
+            var exampleQuestion
+            var exampleAnswer
+            var exampleExplanation
+            let typeNumber = 0
+            //Formats question and answer
+            document.getElementById('ask').style.color = "white"
+            document.getElementById('ask').style.fontFamily = "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"
+            document.getElementById('verify').style.display = "block"
+            document.getElementById('verify').style.textAlign = "center"
+            //Declare variables that tell how many answers are correct
+            let correct = 0
+            let numAsked = 0
+            let percentCorrect = 0
+            //Show question types and hide actual question
+            document.getElementById("math_question").style.display = "none"
+            document.getElementById("example").style.display = "none"
+            document.getElementById("question_types").style.display = "block"
+            //Hides selection screen and shows question
+            function showQuestion() {
+                //Increases the number of question types for each option selected-used to determine the length of arrays used
+                if (document.getElementById("powerRule").checked == true) {
+                    typeNumber++
+                }
+                if (document.getElementById("productRule").checked == true) {
+                    typeNumber++
+                }
+                if (document.getElementById("chainRule").checked == true) {
+                    typeNumber++
+                }
+                if (document.getElementById("trig").checked == true) {
+                    typeNumber = typeNumber + 2
+                }
+                //Requires user to select at least 1 question type
+                if (typeNumber == 0){
+                    return;
+                }
+                reset()
+                //Hide question type select screen
+                document.getElementById("question_types").style.display = "none"
+                //Display question and example
+                document.getElementById("math_question").style.display = "block"
+                document.getElementById("example").style.display = "block"
+            }
+            //Function used to generate example question
+            function example() {
+                //Checks if example is shown
+                if (document.getElementById('example').value == 'Show Example') {
+                    //Variables for example question
+                    a2 = Math.floor((Math.random()*7)+3)
+                    n2 = Math.floor((Math.random()*7)+3)
+                    t2 = Math.floor((Math.random()*7)+3)
+                    a4 = Math.floor((Math.random()*3)+3)
+                    n4 = Math.floor((Math.random()*3)+3)
+                    t4 = Math.floor((Math.random()*3)+3)
+                    //Creates an example question, answer, and explanation that, when this program is finished, will be displayed beneath the question
+                    exampleQuestion = []
+                    exampleAnswer = []
+                    exampleExplanation = []
+                    //Adds elements to the arrays for the example problem based on the question types selected by the user.
+                    if (document.getElementById("powerRule").checked == true) {
+                        exampleQuestion.splice(0, 1, `${a2}x<sup>${n2}</sup>`)
+                        exampleAnswer.splice(0, 1, `${(a2 * n2)}x<sup>${(n2 - 1)}</sup>`)
+                        exampleExplanation.splice(0, 1, `This problem is an example of the power rule. To derive a function using the power rule: <br> 1. Multiply the a-value (${a2}) by the n-value (${n2}). <br> 2. Subtract one from the n-value. <br>`)
+                    }
+                    if (document.getElementById("productRule").checked == true) {
+                        exampleQuestion.splice(1, 1, `(${a2}x+${n2})(${a4}x+${n4})`)
+                        exampleAnswer.splice(1, 1, `${2*(a2*a4)}x+${(a4*n2)+(a2*n4)}`)
+                        exampleExplanation.splice(1, 1, `This problem is an example of the product rule. To derive a function using the product rule: <br> 1. Use the power rule on the first term (${a2}x+${n2}) to get ${a2}. <br> 2. Multiply the derivative of the first term by the second term to get ${a2}(${a4}x+${n4}). <br> 3. Repeat steps 1 and 2 with the terms switched (multiply the first term by the derivative of the second term) to get ${a4}(${a2}x+${n2}). <br> 4. Add the answers from steps 2 and 3 together, and simplify. <br>`)
+                    }
+                    if (document.getElementById("chainRule").checked == true) {
+                        exampleQuestion.splice(2, 1, `(${a4}x<sup>${n4}</sup>)<sup>${t4}</sup>`)
+                        exampleAnswer.splice(2, 1, `${a4*n4*t4}x<sup>${n4-1}</sup>(${a4}x<sup>${n4}</sup>)<sup>${t4-1}</sup>`)
+                        exampleExplanation.splice(2, 1, `This problem is an example of the chain rule. Deriving this is similar to using the power rule. <br> 1. Use the power rule on the outer function (the part outside of the parentheses), leaving you with ${a4*n4}u<sup>${n4-1}</sup>, where u represents the inner function. <br> 2. Multiply this by the derivative of the inner function. <br>`)
+                    }
+                    //Unlike the others, this if loop adds to question types to the arrays: sine and cosine
+                    if (document.getElementById("trig").checked == true) {
+                        exampleQuestion.splice(3, 2, `sin(${a2}x<sup>${n2}</sup>)`, `cos(${a2}x<sup>${n2}</sup>)`)
+                        exampleAnswer.splice(3, 2, `(${(a2 * n2)}x<sup>${(n2 - 1)}</sup>)cos(${a2}x<sup>${n2}</sup>)`, `-(${(a2 * n2)}x<sup>${(n2 - 1)}</sup>)sin(${a2}x<sup>${n2}</sup>)`)
+                        exampleExplanation.splice(3, 2, `This is a chain rule problem where the outer function is a trigonomic function, in this case sine. <br> 1. The derivative of sine is cosine, so the derivative of the outer function would be cos(u), where u is the inner function. <br> 2. Multiply cos(u) by the derivative of u. <br>`, `This is a chain rule problem where the outer function is a trigonomic function, in this case cosine. <br> 1. The derivative of cosine is -sine, so the derivative of the outer function would be -sin(u), where u is the inner function. <br> 2. Multiply -sin(u) by the derivative of u to get the final answer. <br>`)
+                    }
+                    //Prints example
+                    document.getElementById("exampleSpace").style.display = "block"
+                    document.getElementById("exampleSpace").style.padding = "10px"
+                    document.getElementById('exampleSpace').innerHTML = document.getElementById('example').innerHTML = `EXAMPLE PROBLEM: The derivative of ${exampleQuestion[questionNumber]} is ${exampleAnswer[questionNumber]}. ${exampleExplanation[questionNumber]} The final answer is ${exampleAnswer[questionNumber]}.`
+                    //Change text on button from show example to hide example
+                    document.getElementById('example').value = 'Hide Example'
+                } else {
+                    //Clear example
+                    document.getElementById('exampleSpace').innerHTML = ''
+                    document.getElementById("exampleSpace").style.display = "none"
+                    document.getElementById("exampleSpace").style.padding = "0px"
+                    //Change text on button from hide example to show example
+                    document.getElementById('example').value = 'Show Example'
+                }
+            }
+            //Function to set up and reset code
+            function reset() {
+                //Sets random values for question
+                a = Math.floor((Math.random()*7)+3)
+                n = Math.floor((Math.random()*7)+3)
+                t = Math.floor((Math.random()*7)+3)
+                //Chooses which question type to use (the number Math.random() is multiplied by is the number of question types)
+                questionNumber = Math.floor(Math.random()*typeNumber)
+                //Makes randomly-generated numbers more managable for deriving chain rule-currently nonfunctional
+                a3 = Math.floor((Math.random()*3)+3)
+                n3 = Math.floor((Math.random()*3)+3)
+                t3 = Math.floor((Math.random()*3)+3)
+                //Creates empty array for question types
+                derivativeQuestion = []
+                //Creates empty array for answer that is accepted, and one that is displayed if the answer is incorrect
+                derivativeAnswer = []
+                displayAnswer = []
+                //Adds different question types to the array based on what question types were selected
+                if (document.getElementById("powerRule").checked == true) {
+                    derivativeQuestion.splice(0, 1, `${a}x<sup>${n}</sup>`)
+                    derivativeAnswer.splice(0, 1, (a * n) + 'x^' + (n - 1))
+                    displayAnswer.splice(0, 1, `${(a * n)}x<sup>${(n - 1)}</sup>`)
+                }
+                if (document.getElementById("productRule").checked == true) {
+                    derivativeQuestion.splice(1, 1, `(${a}x+${n})(${a3}x+${n3})`)
+                    derivativeAnswer.splice(1, 1, `${2*(a*a3)}x+${(a3*n)+(a*n3)}`)
+                    displayAnswer.splice(1, 1, `${2*(a*a3)}x+${(a3*n)+(a*n3)}`)
+                }
+                if (document.getElementById("chainRule").checked == true) {
+                    derivativeQuestion.splice(2, 1, `(${a3}x<sup>${n3}</sup>)<sup>${t3}</sup>`)
+                    derivativeAnswer.splice(2, 1, `${a3*n3*t3}x^${n3-1}(${a3}x^${n3})^${t3-1}`)
+                    displayAnswer.splice(2, 1, `${a3*n3*t3}x<sup>${n3-1}</sup>(${a3}x<sup>${n3}</sup>)<sup>${t3-1}</sup>`)
+                }
+                //Unlike the others, this if loop adds to question types to the arrays: sine and cosine
+                if (document.getElementById("trig").checked == true) {
+                    derivativeQuestion.splice(3, 2, `sin(${a}x<sup>${n}</sup>)`, `cos(${a}x<sup>${n}</sup>)`)
+                    derivativeAnswer.splice(3, 2, `(${(a * n)}x^${(n - 1)})cos(${a}x^${n})`, `-(${(a * n)}x^${(n - 1)})sin(${a}x^${n})`)
+                    displayAnswer.splice(3, 2, `(${(a * n)}x<sup>${(n - 1)}</sup>)cos(${a}x<sup>${n}</sup>)`, `-(${(a * n)}x<sup>${(n - 1)}</sup>)sin(${a}x<sup>${n}</sup>)`)
+                }
+                //Prints question with randomly-generated values (<sup> tag displays an exponent)
+                document.getElementById('ask').innerHTML = `What is the derivative of the function ${derivativeQuestion[questionNumber]}? Type any exponents in the form x^n.`
+                //Prints the answer the user's inputs is being checked against to the console
+                console.log(`The answer for this question is ${derivativeAnswer[questionNumber]}`)
+                //Clears input space
+                document.getElementById('math_question').reset()
+                //Clear example from previous problem
+                document.getElementById('exampleSpace').innerHTML = ''
+                document.getElementById("exampleSpace").style.display = "none"
+                document.getElementById("exampleSpace").style.padding = "0px"
+                //Change text on button from hide example to show example
+                document.getElementById('example').value = 'Show Example'
+            }
+            //Checks if user's input is correct
+            function checkAnswer() {
+                //Gets the user inputs for math1, math2, and math3
+                var answer = document.getElementById("math")
+                //Formatting (uses same elements as CSS)
+                document.getElementById('verify').style.color = "white"
+                document.getElementById('verify').style.fontFamily = "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"
+                //Checks if inputs are correct
+                if (answer.value == derivativeAnswer[questionNumber]) {
+                    //Increases number correct by 1
+                    correct ++
+                    //Increases total questions asked by 1
+                    numAsked ++
+                    //Updates score
+                    percentCorrect = Math.floor((correct/numAsked)*100)
+                    //Tells user that answer is correct
+                    document.getElementById('verify').innerHTML = `Correct! You have gotten ${correct} out of ${numAsked} correct, and your score is ${percentCorrect}%.`
+                } else {
+                    //Increases total questions asked by 1
+                    numAsked ++
+                    //Updates score
+                    percentCorrect = Math.floor((correct/numAsked)*100)
+                    //Tells user that answer is incorrect
+                    document.getElementById('verify').innerHTML = `Incorrect. The correct answer is ${displayAnswer[questionNumber]}</sup>. Your answer was ${answer.value}. You have gotten ${correct} out of ${numAsked} correct, and your score is ${percentCorrect}%.`
+                }
+                //Resets question
+                reset()
+            }
+        </script>
+    </body>
+</html>
