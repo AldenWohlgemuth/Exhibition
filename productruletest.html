@@ -193,7 +193,7 @@
                     displayAnswer.splice(3, 2, `(${(a * n)}x<sup>${(n - 1)}</sup>)cos(${a}x<sup>${n}</sup>)`, `-(${(a * n)}x<sup>${(n - 1)}</sup>)sin(${a}x<sup>${n}</sup>)`)
                 }
                 //Prints question with randomly-generated values (<sup> tag displays an exponent)
-                document.getElementById('ask').innerHTML = `What is the derivative of the function ${derivativeQuestion[questionNumber]}? Type any exponents in the form x^n.`
+                document.getElementById('ask').innerHTML = `What is the derivative of the function ${derivativeQuestion[questionNumber]}? Type any exponents in the form x^n, and make sure to fully simplify product rule problems.`
                 //Prints the answer the user's inputs is being checked against to the console
                 console.log(`The answer for this question is ${derivativeAnswer[questionNumber]}`)
                 //Clears input space
